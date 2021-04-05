@@ -25,7 +25,7 @@ class PageTest(unittest.TestCase):
 		time.sleep(2)
 
 		select = self.browser.find_element_by_id('reserve').click()
-		time.sleep(2)
+		time.sleep(1)
 
 		select = self.browser.find_element_by_id('reserve').send_keys("2021-04-08")
 		time.sleep(2)
