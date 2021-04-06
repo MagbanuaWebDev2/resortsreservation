@@ -12,7 +12,15 @@ class PageTest(unittest.TestCase):
 	def setUp(self):
 		self.browser = webdriver.Firefox()
 
-	def test_browser_title(self):
+	'''def tearDown(self):
+		self.browser.quit()
+
+	def test_browser_test(self):
+		self.browser.get('http://localhost:8000')
+		self.assertIn('The Resorts Hub', self.browser.title)
+		self.fail('Finish the test!')'''
+
+	def test_start_list_and_retrieve_it(self):
 		self.browser.get('http://localhost:8000')
 		self.assertIn('The Resorts Hub', self.browser.title)
 
