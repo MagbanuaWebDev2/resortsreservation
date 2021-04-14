@@ -8,6 +8,13 @@ class HomePageTest(TestCase):
 		response = self.client.get('/')
 		self.assertTemplateUsed(response,'homepage.html')
 
+	def test_save_POST_request(self):
+		response = self.client.post('/',data={'Fullname':'New entry'})
+		self.assertIn('New entry', response.content.decode())
+		response = self.client.post('/',data={'reserve':'New entry'})
+		self.assertIn('New entry', response.content.decode())
+		self.assertTemplateUsed(response,'homepage.html')
+
 	'''def test_mainpage_returns_correct_view(self):
 			response = self.client.get('/')
 			html = response.content.decode('utf8')

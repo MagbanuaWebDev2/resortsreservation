@@ -27,7 +27,7 @@ class PageTest(unittest.TestCase):
 		headerText = self.browser.find_element_by_tag_name('h1').text 
 		self.assertIn('Digital Reservation Receipt', headerText)
 
-		input1 = self.browser.find_element_by_tag_name('p').text
+		input1 = self.browser.find_element_by_tag_name('label').text
 		self.assertIn('Full Name', input1)
 		fname = self.browser.find_element_by_name('Fullname').send_keys("Kim Magbanua")
 		time.sleep(2)
@@ -41,6 +41,8 @@ class PageTest(unittest.TestCase):
 		select = self.browser.find_element_by_name('submitbutton').click()	
 		time.sleep(2)
 
+		table = self.browser.find_element_by_id('listTable')
+		rows = table.find_element_by_tag_name('tr')
 
 if __name__== '__main__':
 	unittest.main()																																																	
