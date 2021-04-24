@@ -8,4 +8,4 @@ def homepage(request):
     return render(request,'homepage.html')'''  
 
 def homepage(request):
-	return render(request,'homepage.html', {'newPerson': request.POST.get('Fullname'),'newDate': request.POST.get('reserve'),})
+	return render(request,'homepage.html', {'newPerson': request.POST.get('Fullname'),'newDate': request.POST.get('reserve'),'contactno': request.POST.get('contact'),'resortname': request.POST.get('resort'),'entrance': request.POST.get('admit'), 'aquant': request.POST.get('admitquant')})

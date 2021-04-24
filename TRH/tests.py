@@ -13,6 +13,15 @@ class HomePageTest(TestCase):
 		self.assertIn('New entry', response.content.decode())
 		response = self.client.post('/',data={'reserve':'New entry'})
 		self.assertIn('New entry', response.content.decode())
+		response = self.client.post('/',data={'contact':'New entry'})
+		self.assertIn('New entry', response.content.decode())
+		response = self.client.post('/',data={'resort':'New entry'})
+		self.assertIn('New entry', response.content.decode())
+		response = self.client.post('/',data={'admit':'New entry'})
+		self.assertIn('New entry', response.content.decode())
+		response = self.client.post('/',data={'admitquant':'New entry'})
+		self.assertIn('New entry', response.content.decode())
+
 		self.assertTemplateUsed(response,'homepage.html')
 
 	'''def test_mainpage_returns_correct_view(self):

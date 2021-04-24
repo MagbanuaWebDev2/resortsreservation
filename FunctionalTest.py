@@ -18,7 +18,12 @@ class PageTest(unittest.TestCase):
 	def test_browser_test(self):
 		self.browser.get('http://localhost:8000')
 		self.assertIn('The Resorts Hub', self.browser.title)
-		self.fail('Finish the test!')'''
+		self.fail('Finish the test!')
+
+	def check_rows_in_listTable(self, row_text):
+		table = self.browser.find_element_by_id('listTable')
+		rows = table.find_element_by_tag_name('tr')
+		self.assertIn(row_text, [row.text for row in rows])'''
 
 	def test_start_list_and_retrieve_it(self):
 		self.browser.get('http://localhost:8000')
@@ -35,7 +40,23 @@ class PageTest(unittest.TestCase):
 		select = self.browser.find_element_by_id('reserve').click()
 		time.sleep(1)
 
-		select = self.browser.find_element_by_id('reserve').send_keys("2021-04-08")
+		select = self.browser.find_element_by_id('reserve').send_keys("2021-04-30")
+		time.sleep(2)
+
+		select = self.browser.find_element_by_id('contact').send_keys("09123456789")
+		time.sleep(2)
+
+		select = self.browser.find_element_by_id('resort').click()
+		time.sleep(1)
+
+		select = self.browser.find_element_by_id('resort').send_keys("Jardin De Dasmari&#241as")
+
+		select = self.browser.find_element_by_id('admit').click()
+
+		select = self.browser.find_element_by_id('admit').send_keys("Overnight (Adult)")
+		time.sleep(2)
+
+		select = self.browser.find_element_by_id('admitquant').send_keys("2")
 		time.sleep(2)
 
 		select = self.browser.find_element_by_name('submitbutton').click()	
@@ -43,6 +64,8 @@ class PageTest(unittest.TestCase):
 
 		table = self.browser.find_element_by_id('listTable')
 		rows = table.find_element_by_tag_name('tr')
+		'''self.assertIn('Kim Magbanua',[row.text for row in rows])
+		self.assertIn('2021-04-08',[row.text for row in rows])'''
 
 if __name__== '__main__':
 	unittest.main()																																																	
