@@ -9,20 +9,36 @@ class HomePageTest(TestCase):
 		self.assertTemplateUsed(response,'homepage.html')
 
 	def test_save_POST_request(self):
-		response = self.client.post('/',data={'Fullname':'New entry'})
-		self.assertIn('New entry', response.content.decode())
-		response = self.client.post('/',data={'reserve':'New entry'})
-		self.assertIn('New entry', response.content.decode())
-		response = self.client.post('/',data={'contact':'New entry'})
-		self.assertIn('New entry', response.content.decode())
-		response = self.client.post('/',data={'resort':'New entry'})
-		self.assertIn('New entry', response.content.decode())
-		response = self.client.post('/',data={'admit':'New entry'})
+		response = self.client.post('/',data={'Fullname':'Name of user'})
+		self.assertIn('Name of user', response.content.decode())
+		response = self.client.post('/',data={'reserve':'date of reservation'})
+		self.assertIn('date of reservation', response.content.decode())
+		response = self.client.post('/',data={'contact':'contact info'})
+		self.assertIn('contact info', response.content.decode())
+		response = self.client.post('/',data={'resort':'chosen resort'})
+		self.assertIn('chosen resort', response.content.decode())
+		response = self.client.post('/',data={'entrance':'New entry'})
 		self.assertIn('New entry', response.content.decode())
 		response = self.client.post('/',data={'admitquant':'New entry'})
 		self.assertIn('New entry', response.content.decode())
-
 		self.assertTemplateUsed(response,'homepage.html')
+
+	# class ORMTest(TestCase)
+	# 	def test_saving_retrieving_list(self):
+	# 		admit1 = item()
+	# 		admit1.text
+
+
+
+
+
+
+
+
+
+
+
+
 
 	'''def test_mainpage_returns_correct_view(self):
 			response = self.client.get('/')

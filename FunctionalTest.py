@@ -46,15 +46,10 @@ class PageTest(unittest.TestCase):
 		select = self.browser.find_element_by_id('contact').send_keys("09123456789")
 		time.sleep(2)
 
-		select = self.browser.find_element_by_id('resort').click()
+		select = self.browser.find_element_by_id('resortb').click()
 		time.sleep(1)
 
-		select = self.browser.find_element_by_id('resort').send_keys("Jardin De Dasmari&#241as")
-
-		select = self.browser.find_element_by_id('admit').click()
-
-		select = self.browser.find_element_by_id('admit').send_keys("Overnight (Adult)")
-		time.sleep(2)
+		select = self.browser.find_element_by_id('entrancec').click()
 
 		select = self.browser.find_element_by_id('admitquant').send_keys("2")
 		time.sleep(2)

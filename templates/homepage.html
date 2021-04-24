@@ -14,21 +14,14 @@
 				<label>Contact Number</label>
 				<input type="tel" id="contact" name="contact" placeholder="Enter your Contact Number" pattern="[0-9]{11}" required/><br/><br/>
 				<label>Select a Resort</label><br/><br/>
-				<select name="resort" id="resort">
-  					<option value="Tubigan Garden Resort">Tubigan Garden Resort</option>
-  					<option value="Coco Valley Richnez Waterpark">Coco Valley Richnez Waterpark</option>
-  					<option value="Volet's Hotel & Resort">Volet's Hotel & Resort</option>
-  					<option value="Jardin De Dasmari&#241as">Jardin De Dasmari&#241as</option>
-				</select><br/><br/>
+				<input type="radio" id="resorta" name="resort" value="Tubigan Garden Resort">Tubigan Garden Resort <br/>
+				<input type="radio" id="resortb" name="resort" value="Saniya Resort & Hotel">Saniya Resort & Hotel <br/>
+				<input type="radio" id="resortc" name="resort" value="Coco Valley Richnez Waterpark">Coco Valley Richnez Waterpark <br/>
+				<input type="radio" id="resortd" name="resort" value="Volet's Hotel & Resort">Volet's Hotel & Resort <br/><br/>
 				<label>Admission</label><br/><br/>
-				<select name="admit" id="admit">
-  					<option value="Day [Adult]">Day (Adult)</option>
-  					<option value="Day [Child]">Day (Child)</option>
-  					<option value="Night [Adult]">Night (Adult)</option>
-  					<option value="Night [Child]">Night Child</option>
-  					<option value="Overnight [Adult]">Overnight (Adult)</option>
-  					<option value="Overnight [Child]">Overnight Child</option>
-				</select>
+				<input type="radio" id="entrancea" name="entrance" value="Day">Day <br/>
+				<input type="radio" id="entranceb" name="entrance" value="Night">Night <br/>
+				<input type="radio" id="entrancec" name="entrance" value="Overnight">Overnight<br/>
 				<label>Quantity</label>
 				<input type="num" id="admitquant" name="admitquant" min="1" max="20" required/><br/><br/>
 
@@ -50,7 +43,7 @@
 				<td>{{resortname}}</td>
 			</tr>
 			<tr>
-				<td>{{entrance}}</td>
+				<td>{{admit}}</td>
 				<td>{{aquant}}</td>
 			</tr>
 		</table> 
