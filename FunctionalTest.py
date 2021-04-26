@@ -4,63 +4,139 @@ import unittest
 from selenium.webdriver.common.keys import Keys
 import time
 
-'''browser = webdriver.Firefox()
-browser.get('http://127.0.0.1:8000')'''
-
 class PageTest(unittest.TestCase):
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
 
-	'''def tearDown(self):
-		self.browser.quit()
-
-	def test_browser_test(self):
+	def test_browser_title(self):
 		self.browser.get('http://localhost:8000')
 		self.assertIn('The Resorts Hub', self.browser.title)
-		self.fail('Finish the test!')
 
-	def check_rows_in_listTable(self, row_text):
-		table = self.browser.find_element_by_id('listTable')
-		rows = table.find_element_by_tag_name('tr')
-		self.assertIn(row_text, [row.text for row in rows])'''
-
-	def test_start_list_and_retrieve_it(self):
-		self.browser.get('http://localhost:8000')
-		self.assertIn('The Resorts Hub', self.browser.title)
+		#Header
 
 		headerText = self.browser.find_element_by_tag_name('h1').text 
-		self.assertIn('Digital Reservation Receipt', headerText)
+		self.assertIn('Digital Resort Reservation', headerText)
 
-		input1 = self.browser.find_element_by_tag_name('label').text
-		self.assertIn('Full Name', input1)
-		fname = self.browser.find_element_by_name('Fullname').send_keys("Kim Magbanua")
-		time.sleep(2)
+		#Fullname
 
-		select = self.browser.find_element_by_id('reserve').click()
+		name = self.browser.find_element_by_id('Fullnamea').text
+		self.assertIn('Full Name', name)
+
+		name = self.browser.find_element_by_name('Fullname')
+		self.assertEqual(name.get_attribute('placeholder'),'Full Name')
+
+		name = self.browser.find_element_by_name('Fullname').send_keys("Kim Magbanua")
 		time.sleep(1)
 
-		select = self.browser.find_element_by_id('reserve').send_keys("2021-04-30")
-		time.sleep(2)
+		#Date of Reservation
 
-		select = self.browser.find_element_by_id('contact').send_keys("09123456789")
-		time.sleep(2)
+		date = self.browser.find_element_by_id('reservea').text
+		self.assertIn('Date of Reservation', date)
 
-		select = self.browser.find_element_by_id('resortb').click()
+		date = self.browser.find_element_by_id('reserve').click()
+
+		date = self.browser.find_element_by_id('reserve').send_keys("2021-04-30")
 		time.sleep(1)
 
-		select = self.browser.find_element_by_id('entrancec').click()
+		#Contact No.
 
-		select = self.browser.find_element_by_id('admitquant').send_keys("2")
-		time.sleep(2)
+		cont = self.browser.find_element_by_id('contacta').text
+		self.assertIn('Contact Number', cont)
 
-		select = self.browser.find_element_by_name('submitbutton').click()	
-		time.sleep(2)
+		cont = self.browser.find_element_by_id('contact')
+		self.assertEqual(cont.get_attribute('placeholder'),'Enter your Contact Number')
 
-		table = self.browser.find_element_by_id('listTable')
-		rows = table.find_element_by_tag_name('tr')
-		'''self.assertIn('Kim Magbanua',[row.text for row in rows])
-		self.assertIn('2021-04-08',[row.text for row in rows])'''
+		cont = self.browser.find_element_by_id('contact').send_keys("09123456789")
+		time.sleep(1)
+
+		#Chosen Resort
+
+		rsrt = self.browser.find_element_by_id('resorte').text
+		self.assertIn('Select a Resort', rsrt)
+
+		rsrt = self.browser.find_element_by_id('resort').click()
+
+		rsrt = self.browser.find_element_by_id('resorta').send_keys("Tubigan Garden Resort")
+		time.sleep(1)
+
+		rsrt = self.browser.find_element_by_id('resortb').send_keys("Saniya Resort & Hotel")
+		time.sleep(1)
+
+		rsrt = self.browser.find_element_by_id('resortc').send_keys("Coco Valley Richnez Waterpark")
+		time.sleep(1)
+
+		rsrt = self.browser.find_element_by_id('resortd').send_keys("Volets Hotel & Resort")
+		time.sleep(1)
+		
+		#Admission
+
+		admis = self.browser.find_element_by_id('entranced').text
+		self.assertIn('Admission (Adult)', admis)
+
+		admis = self.browser.find_element_by_id('entrance').click()
+
+		admis = self.browser.find_element_by_id('entrancea').send_keys("Day [Adult]")
+		time.sleep(1)
+
+		admis = self.browser.find_element_by_id('entranceb').send_keys("Night [Adult]")
+		time.sleep(1)
+
+		admis = self.browser.find_element_by_id('entrancec').send_keys("Overnight [Adult]")
+		time.sleep(1)
+
+		#Quantity1
+
+		quant1 = self.browser.find_element_by_id('admit')
+		self.assertEqual(quant1.get_attribute('placeholder'),'Quantity (Max of 30)')
+
+		quant1 = self.browser.find_element_by_id('admit').send_keys("3")
+		time.sleep(1)
+
+		submit = self.browser.find_element_by_name('submitbutton').click()	
+
+
+		self.browser.quit()
+		self.browser = webdriver.Firefox()
+		self.browser.get('http://localhost:8000')	
+
+
+		name = self.browser.find_element_by_name('Fullname').send_keys("Kim Magbanua")
+		time.sleep(1)
+
+		date = self.browser.find_element_by_id('reserve').send_keys("2021-04-30")
+		time.sleep(1)
+
+		cont = self.browser.find_element_by_id('contact').send_keys("09123456789")
+		time.sleep(1)
+
+		rsrt = self.browser.find_element_by_id('resorta').send_keys("Tubigan Garden Resort")
+		time.sleep(1)
+
+		rsrt = self.browser.find_element_by_id('resortb').send_keys("Saniya Resort & Hotel")
+		time.sleep(1)
+
+		rsrt = self.browser.find_element_by_id('resortc').send_keys("Coco Valley Richnez Waterpark")
+		time.sleep(1)
+
+		rsrt = self.browser.find_element_by_id('resortd').send_keys("Volets Hotel & Resort")
+		time.sleep(1)
+
+		admis = self.browser.find_element_by_id('entrancea').send_keys("Day [Adult]")
+		time.sleep(1)
+
+		admis = self.browser.find_element_by_id('entranceb').send_keys("Night [Adult]")
+		time.sleep(1)
+
+		admis = self.browser.find_element_by_id('entrancec').send_keys("Overnight [Adult]")
+		time.sleep(1)
+
+		quant1 = self.browser.find_element_by_id('admit').send_keys("3")
+		time.sleep(1)
+
+		submit = self.browser.find_element_by_name('submitbutton').click()
+
+		self.browser.quit()
 
 if __name__== '__main__':
-	unittest.main()																																																	
+	unittest.main()																																															

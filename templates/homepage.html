@@ -4,48 +4,34 @@
 	</head>
 
 	<body>
-			<h1>Digital Reservation Receipt</h1>
-
-			<form method="POST">
-				<label>Full Name</label>
-				<input type="text" id="Fullname" name="Fullname" placeholder="Full Name" required/><br/><br/>
-				<label>Date of Reservation</label>
-				<input type="date" id="reserve" name="reserve" placeholder="Enter the Date Here"/><br/><br/>
-				<label>Contact Number</label>
-				<input type="tel" id="contact" name="contact" placeholder="Enter your Contact Number" pattern="[0-9]{11}" required/><br/><br/>
-				<label>Select a Resort</label><br/><br/>
-				<input type="radio" id="resorta" name="resort" value="Tubigan Garden Resort">Tubigan Garden Resort <br/>
-				<input type="radio" id="resortb" name="resort" value="Saniya Resort & Hotel">Saniya Resort & Hotel <br/>
-				<input type="radio" id="resortc" name="resort" value="Coco Valley Richnez Waterpark">Coco Valley Richnez Waterpark <br/>
-				<input type="radio" id="resortd" name="resort" value="Volet's Hotel & Resort">Volet's Hotel & Resort <br/><br/>
-				<label>Admission</label><br/><br/>
-				<input type="radio" id="entrancea" name="entrance" value="Day">Day <br/>
-				<input type="radio" id="entranceb" name="entrance" value="Night">Night <br/>
-				<input type="radio" id="entrancec" name="entrance" value="Overnight">Overnight<br/>
-				<label>Quantity</label>
-				<input type="num" id="admitquant" name="admitquant" min="1" max="20" required/><br/><br/>
-
-			<input type="submit" name="submitbutton" value="Create a Receipt">
-			{% csrf_token %}
-			</form>
+			<h1>Digital Resort Reservation</h1>
 			
-		<table id="listTable">
-			<tr>
-				<td>{{newPerson}}</td>
-			</tr>
-			<tr>
-				<td>{{newDate}}</td>
-			</tr>
-			<tr>
-				<td>{{contactno}}</td>
-			</tr>
-			<tr>
-				<td>{{resortname}}</td>
-			</tr>
-			<tr>
-				<td>{{admit}}</td>
-				<td>{{aquant}}</td>
-			</tr>
-		</table> 
+
+			<form class="form" action="" method="POST">
+				{% csrf_token %}
+				
+				<p id="Fullnamea">Full Name</p>
+				<input type="text" id="Fullname" name="Fullname" placeholder="Full Name" required/><br/>
+				<p id="reservea">Date of Reservation</p>
+				<input type="date" id="reserve" name="reserve" required/><br/>
+				<p id="contacta">Contact Number</p>
+				<input type="tel" id="contact" name="contact" placeholder="Enter your Contact Number" pattern="[0-9]{11}" required/><br/>
+				<p id="resorte">Select a Resort</p>
+				<select id="resort" name="resort" required>
+				<option id="resorta" value="Tubigan Garden Resort">Tubigan Garden Resort </option>
+					<option id="resortb" value="Saniya Resort & Hotel">Saniya Resort & Hotel</option>
+					<option id="resortc" value="Coco Valley Richnez Waterpark">Coco Valley Richnez Waterpark</option>
+					<option id="resortd" value="Volets Hotel & Resort">Volets Hotel & Resort</option>
+				</select> <br/>
+				<p id="entranced">Admission (Adult)</p>
+				<select id="entrance" name="entrance" required>
+					<option id="entrancea" value="Day [Adult]">Day </option>
+					<option id="entranceb" value="Night [Adult]">Night </option>
+					<option id="entrancec" value="Overnight [Adult]">Overnight</option>
+				<input type="number" id="admit" name="admit" placeholder="Quantity (Max of 30)" min="1" max="30" required/><br/><br/>
+
+			<input type="submit" name="submitbutton" value="Create a Reservation">
+			</form>
+		
 	</body>
 </html>

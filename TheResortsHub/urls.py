@@ -1,6 +1,7 @@
-from django.conf.urls import url
-from TRH import views
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-	url(r'^$', views.homepage, name='homepage.html'),
+	path('admin/', admin.site.urls),
+	path('', include('TRH.urls')),
 ]
