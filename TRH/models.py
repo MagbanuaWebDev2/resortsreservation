@@ -1,8 +1,11 @@
 from django.db import models
 
+class User(models.Model):
+	pass
+
 
 class Info(models.Model):
-	# User = models.ForeignKey(User, default=None, on delete=models.CASCADE)
+	Visitor = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
 	#Name
 	Fullname = models.CharField(max_length=20, null=True)
 	#Reservation Date
@@ -23,5 +26,3 @@ class Info(models.Model):
 def __str__(self):
 	return self.name
 
-# class User(models.Model)
-# 	pass

@@ -1,16 +1,18 @@
 from selenium import webdriver
 import unittest
-
 from selenium.webdriver.common.keys import Keys
 import time
+from django.test import LiveServerTestCase
 
-class PageTest(unittest.TestCase):
+
+
+class PageTest(LiveServerTestCase):
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
+		self.browser.get(self.live_server_url)
 
-	def test_browser_title(self):
-		self.browser.get('http://localhost:8000')
+	def test_browser_firstvisit(self):
 		self.assertIn('The Resorts Hub', self.browser.title)
 
 		#Header
@@ -95,10 +97,11 @@ class PageTest(unittest.TestCase):
 
 		submit = self.browser.find_element_by_name('submitbutton').click()	
 
-
+	def tearDown(self):
 		self.browser.quit()
-		self.browser = webdriver.Firefox()
-		self.browser.get('http://localhost:8000')	
+
+	def test_browser_second_visit(self):
+		self.browser.get(self.live_server_url)
 
 
 		name = self.browser.find_element_by_name('Fullname').send_keys("Kim Magbanua")
@@ -136,7 +139,8 @@ class PageTest(unittest.TestCase):
 
 		submit = self.browser.find_element_by_name('submitbutton').click()
 
+	def tearDown(self):
 		self.browser.quit()
 
-if __name__== '__main__':
-	unittest.main()																																															
+# if __name__== '__main__':
+# 	unittest.main()																																															

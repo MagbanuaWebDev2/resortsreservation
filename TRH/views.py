@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Info
+from .models import Info,User
 
 def homepage(request):
 
@@ -22,10 +22,39 @@ def homepage(request):
 
 	return render(request,'homepage.html')
 
-# def Viewrecords(request, UserId)
-# 	uId = User.objects.get(id=UserId)
-# 	return render (request, 'resorts_hub.html',{'uId':uId})
-
 def NextPage(request):
 	trh = Info.objects.all().order_by('Fullname')
-	return render(request, 'resorts_hub.html',{'trh':trh})
+	trh = Info.objects.all().order_by('reserve')
+	trh = Info.objects.all().order_by('contact')
+	trh = Info.objects.all().order_by('resort')
+	trh = Info.objects.all().order_by('entrance')
+	trh = Info.objects.all().order_by('admit')
+	return render(request, 'resorts_hub.html', {'trh':trh})
+
+def new_record(request):
+	trh = User.objects.create()
+	Info.objects.create(text=request.POST['Fullname'], trh=trh)
+	Info.objects.create(text=request.POST['reserve'], trh=trh)
+	Info.objects.create(text=request.POST['contact'], trh=trh)
+	Info.objects.create(text=request.POST['resort'], trh=trh)
+	Info.objects.create(text=request.POST['entrance'], trh=trh)
+	Info.objects.create(text=request.POST['admit'], trh=trh)
+	return redirect(f'/next/{trh.id}/')
+
+def add_record(request, trh_id):
+	trh = User.objects.create()
+	Info.objects.create(text=request.POST['Fullname'], trh=trh)
+	Info.objects.create(text=request.POST['reserve'], trh=trh)
+	Info.objects.create(text=request.POST['contact'], trh=trh)
+	Info.objects.create(text=request.POST['resort'], trh=trh)
+	Info.objects.create(text=request.POST['entrance'], trh=trh)
+	Info.objects.create(text=request.POST['admit'], trh=trh)
+	return redirect(f'/next/{trh.id}/')
+
+
+def view_record(request, User_Id):
+	uId = User.objects.get(id=User_Id)
+	return render (request, 'resorts_hub.html',{'uId':uId})
+
+
+
