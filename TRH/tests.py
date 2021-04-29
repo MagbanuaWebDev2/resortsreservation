@@ -3,6 +3,7 @@ from django.template.loader import render_to_string
 from TRH.views import homepage
 from TRH.models import Info,User
 
+
 class HomePageTest(TestCase):
 
 	def test_mainpage_returns_correct_view(self):
@@ -41,31 +42,96 @@ class HomePageTest(TestCase):
 		self.assertIn('</form>',html)
 		self.assertTrue(html.strip().endswith('</html>'))
 
+class ListViewTest(TestCase):
+
+	def test_uses_main_template(self):
+		visitor = User.objects.create()
+		response = self.client.get('/')
+		self.assertTemplateUsed(response, 'homepage.html')
+	def test_uses_next_template(self):
+		response = self.client.get('/success')
+		self.assertTemplateUsed(response, 'receipt.html')
+	def test_displays_all_info(self):
+		visitor = User.objects.create()
+		Fullname = Info.objects.create(Fullname='Fullname')
+		reserve = Info.objects.create(reserve='2021-04-30')
+		contact = Info.objects.create(contact='contact')
+		resort = Info.objects.create(resort='resort')
+		entrance = Info.objects.create(entrance='entrance')
+		admit = Info.objects.create(admit='3')
+		response = self.client.get('/')
+		self.assertIn('Fullname', response.content.decode())
+		self.assertIn('reserve', response.content.decode())
+		self.assertIn('contact', response.content.decode())
+		self.assertIn('resort', response.content.decode())
+		self.assertIn('entrance', response.content.decode())
+		self.assertIn('admit', response.content.decode())
+		Fullname = Info.objects.get(Fullname='Fullname')
+		reserve = Info.objects.get(reserve='2021-04-30')
+		contact = Info.objects.get(contact='contact')
+		resort = Info.objects.get(resort='resort')
+		entrance = Info.objects.get(entrance='entrance')
+		admit = Info.objects.get(admit='3')
+		self.assertEqual(Info.objects.count(), 6)
+
+
+class Models(TestCase):
+	def confirm(self,
+		Fullname="test1",
+		reserve="test2",
+		contact="test3",
+		resort="test4",
+		entrance="test5",
+		admit="test6"):
+
+		return User.objects.create()
+		return Info.objects.create(
+			Fullname="Fullname",
+			reserve="reserve",
+			contact="contact",
+			resort="resort",
+			entrance="entrance",
+			admit="admit", )
+
+	def test_whatever_creation(self):
+		new = self.confirm()
+		self.assertTrue(isinstance(new, User))
+		self.assertFalse(isinstance(new, Info))
 
 class ORMTest(TestCase):
 
 	def test_saving_info(self):
+
+		info_= Info()
+		info_.save()
+
 		Info1 = Info()
 		Info1.Fullname = 'Kim Magbanua'
+		Info1.info_ = info_
 		Info1.save()
 		Info2 = Info()
 		Info2.reserve = '2021-04-30'
+		Info2.info_ = info_
 		Info2.save()
 		Info3 = Info()
 		Info3.contact = '09123456789'
+		Info3.info_ = info_
 		Info3.save()
 		Info4 = Info()
 		Info4.resort = 'Volets Hotel & Resort'
+		Info4.info_ = info_
 		Info4.save()
 		Info5 = Info()
 		Info5.entrance = 'Overnight [Adult]'
+		Info5.info_ = info_
 		Info5.save()
 		Info6 = Info()
 		Info6.admit = '3'
+		Info6.info_ = info_
 		Info6.save()
 
 		saveall = Info.objects.all()
-		self.assertEqual(saveall.count(), 6)
+		self.assertEqual(saveall.count(), 7)
 		save1 = saveall[0]
 		save2 = saveall[1]
 		save3 = saveall[2]
@@ -81,28 +147,37 @@ class ORMTest(TestCase):
 
 
 	def test_saving_info2(self):
+
+		info_= Info()
+		info_.save()
+
 		Info1 = Info()
 		Info1.Fullname = 'Kim Magbanua'
-		# Info1.UserId = newUser
+		Info1.info_ = info_
 		Info1.save()
 		Info2 = Info()
 		Info2.reserve = '2021-04-30'
+		Info2.info_ = info_
 		Info2.save()
 		Info3 = Info()
 		Info3.contact = '09123456789'
+		Info3.info_ = info_
 		Info3.save()
 		Info4 = Info()
 		Info4.resort = 'Volets Hotel & Resort'
+		Info4.info_ = info_
 		Info4.save()
 		Info5 = Info()
 		Info5.entrance = 'Overnight [Adult]'
+		Info5.info_ = info_
 		Info5.save()
 		Info6 = Info()
 		Info6.admit = '3'
+		Info6.info_ = info_
 		Info6.save()
 
 		saveall = Info.objects.all()
-		self.assertEqual(saveall.count(), 6)
+		self.assertEqual(saveall.count(), 7)
 		save1 = saveall[0]
 		save2 = saveall[1]
 		save3 = saveall[2]
@@ -115,6 +190,19 @@ class ORMTest(TestCase):
 		self.assertEqual(Info4.resort, 'Volets Hotel & Resort')
 		self.assertEqual(Info5.entrance, 'Overnight [Adult]')
 		self.assertIn(Info6.admit, '3')
+
+class URL(TestCase):
+
+	def urls(self):
+		found = resolve()
+		self.assertEqual(found.func, homepage)
+		self.assertEqual(found.func, NextPage)
+
+		url = reverse('index')
+		self.assertEqual(resolve(url).func, Index)
+
+		url = reverse('next')
+		self.assertEqual(resolve(url).func, NextPage)
 
 
 class Views(TestCase):
@@ -138,14 +226,14 @@ class Views(TestCase):
 
 		self.assertEqual(Info.objects.count(), 7)
 
-	def test_redirects(self):
-		Fullname = Info.objects.get(Fullname="Kim Magbanua")
-		reserve = Info.objects.get(reserve="2021-04-30")
-		contact = Info.objects.get(contact="09123456789")
-		resort = Info.objects.get(resort="Volets Hotel & Resort")
-		entrance = Info.objects.get(entrance="Overnight [Adult]")
-		admit = Info.objects.get(admit="3")
+	# def test_redirect_view(self):
+	# 	Fullname = Info.objects.get(Fullname="Kim Magbanua")
+	# 	reserve = Info.objects.get(reserve="2021-04-30")
+	# 	contact = Info.objects.get(contact="09123456789")
+	# 	resort = Info.objects.get(resort="Volets Hotel & Resort")
+	# 	entrance = Info.objects.get(entrance="Overnight [Adult]")
+	# 	admit = Info.objects.get(admit="3")
 
-		response = self.client.post('/success')
-		self.assertRedirects(response, '/success')
+	# 	response = self.client.post('/success')
+	# 	self.assertRedirects(response, '/success')
 

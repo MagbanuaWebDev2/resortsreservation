@@ -5,10 +5,8 @@
 
 	<body>
 			<h1 style="font-family: 'Ubuntu', sans-serif; text-align:center; margin-top: 30px;">Digital Resort Reservation</h1>
-			
 
 			<form style="font-family: 'Ubuntu', sans-serif; text-align: center; padding-top: 10px; margin-left: 480px; width:400px; border-radius: 10px; box-shadow: 0 2px 8px 0 gray; height:500px;" class="form" action="" method="POST">
-				{% csrf_token %}
 				
 				<p id="Fullnamea" style="font-weight:bold;">Full Name</p>
 				<input type="text" id="Fullname" name="Fullname" placeholder="Full Name" required/><br/>
@@ -31,6 +29,7 @@
 				<input type="number" id="admit" name="admit" placeholder="Quantity (Max of 30)" min="1" max="30" required/><br/><br/>
 
 			<input type="submit" name="submitbutton" value="Create a Reservation">
+			{% csrf_token %}
 			</form>
 	</body>
 </html>

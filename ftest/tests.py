@@ -112,5 +112,9 @@ class PageTest(LiveServerTestCase):
 
 		submit = self.browser.find_element_by_name('submitbutton').click()
 
+	def tearDown(self):
+		self.browser.quit()
+
+
 # if __name__== '__main__':
 # 	unittest.main()																																															

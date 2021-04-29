@@ -1,5 +1,5 @@
 from django.shortcuts import redirect,render
-from .models import Info,User
+from . models import Info,User
 
 def homepage(request):
 
@@ -14,6 +14,7 @@ def homepage(request):
 			entrance = request.POST['entrance'],
 			admit = request.POST['admit'],
 			)
+		
 		return redirect('success')
 
 		trh1 = Info()
@@ -32,16 +33,56 @@ def NextPage(request):
 	trh = Info.objects.last()
 	return render(request, 'receipt.html', {'trh':trh})
 
-def ThirdPage(request):
-	trh = Info.objects.all().order_by('Fullname')
-	trh = Info.objects.all().order_by('reserve')
-	trh = Info.objects.all().order_by('contact')
-	trh = Info.objects.all().order_by('resort')
-	trh = Info.objects.all().order_by('entrance')
-	trh = Info.objects.all().order_by('admit')
-	return render(request, 'resorts_hub.html', {'trh':trh})
 
 def view_receipt(request, visitor):
 	uId = User.objects.get(id=visitor)
 	return render (request, 'receipt.html',{'uId':uId})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def ThirdPage(request):
+# 	trh = Info.objects.all().order_by('Fullname')
+# 	trh = Info.objects.all().order_by('reserve')
+# 	trh = Info.objects.all().order_by('contact')
+# 	trh = Info.objects.all().order_by('resort')
+# 	trh = Info.objects.all().order_by('entrance')
+# 	trh = Info.objects.all().order_by('admit')
+# 	return render(request, 'resorts_hub.html', {'trh':trh})
+
+
+
+
+
+
+
+
+
+
 
