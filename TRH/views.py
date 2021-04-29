@@ -1,15 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import redirect,render
 from .models import Info,User
 
 def homepage(request):
 
 	if request.method == 'POST':
-		Fullname = request.POST['Fullname']
-		reserve = request.POST['reserve']
-		contact = request.POST['contact']
-		resort = request.POST['resort']
-		entrance = request.POST['entrance']
-		admit = request.POST['admit']
+
+		visitor = User.objects.create()
+		Info.objects.create(
+			Fullname = request.POST['Fullname'],
+			reserve = request.POST['reserve'], 
+			contact = request.POST['contact'],
+			resort = request.POST['resort'], 
+			entrance = request.POST['entrance'],
+			admit = request.POST['admit'],
+			)
+		return redirect('success')
 
 		trh1 = Info()
 		trh1.Fullname = Fullname
@@ -22,7 +27,12 @@ def homepage(request):
 
 	return render(request,'homepage.html')
 
+
 def NextPage(request):
+	trh = Info.objects.last()
+	return render(request, 'receipt.html', {'trh':trh})
+
+def ThirdPage(request):
 	trh = Info.objects.all().order_by('Fullname')
 	trh = Info.objects.all().order_by('reserve')
 	trh = Info.objects.all().order_by('contact')
@@ -31,30 +41,7 @@ def NextPage(request):
 	trh = Info.objects.all().order_by('admit')
 	return render(request, 'resorts_hub.html', {'trh':trh})
 
-def new_record(request):
-	trh = User.objects.create()
-	Info.objects.create(text=request.POST['Fullname'], trh=trh)
-	Info.objects.create(text=request.POST['reserve'], trh=trh)
-	Info.objects.create(text=request.POST['contact'], trh=trh)
-	Info.objects.create(text=request.POST['resort'], trh=trh)
-	Info.objects.create(text=request.POST['entrance'], trh=trh)
-	Info.objects.create(text=request.POST['admit'], trh=trh)
-	return redirect(f'/next/{trh.id}/')
-
-def add_record(request, trh_id):
-	trh = User.objects.create()
-	Info.objects.create(text=request.POST['Fullname'], trh=trh)
-	Info.objects.create(text=request.POST['reserve'], trh=trh)
-	Info.objects.create(text=request.POST['contact'], trh=trh)
-	Info.objects.create(text=request.POST['resort'], trh=trh)
-	Info.objects.create(text=request.POST['entrance'], trh=trh)
-	Info.objects.create(text=request.POST['admit'], trh=trh)
-	return redirect(f'/next/{trh.id}/')
-
-
-def view_record(request, User_Id):
-	uId = User.objects.get(id=User_Id)
-	return render (request, 'resorts_hub.html',{'uId':uId})
-
-
+def view_receipt(request, visitor):
+	uId = User.objects.get(id=visitor)
+	return render (request, 'receipt.html',{'uId':uId})
 

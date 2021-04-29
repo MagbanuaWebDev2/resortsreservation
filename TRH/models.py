@@ -3,9 +3,8 @@ from django.db import models
 class User(models.Model):
 	pass
 
-
 class Info(models.Model):
-	Visitor = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
+	visitor = models.ForeignKey(User, default=None, on_delete=models.CASCADE, null=True)
 	#Name
 	Fullname = models.CharField(max_length=20, null=True)
 	#Reservation Date
@@ -21,7 +20,6 @@ class Info(models.Model):
 	entrance = models.CharField(max_length=10, choices=entrchoice)
 	#Quantity of Entrance
 	admit = models.IntegerField(default='1')
-
 
 def __str__(self):
 	return self.name

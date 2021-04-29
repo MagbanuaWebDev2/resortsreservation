@@ -5,14 +5,14 @@ import time
 from django.test import LiveServerTestCase
 
 
-
 class PageTest(LiveServerTestCase):
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
-		self.browser.get(self.live_server_url)
+		
 
 	def test_browser_firstvisit(self):
+		self.browser.get(self.live_server_url)
 		self.assertIn('The Resorts Hub', self.browser.title)
 
 		#Header
@@ -59,17 +59,9 @@ class PageTest(LiveServerTestCase):
 
 		rsrt = self.browser.find_element_by_id('resort').click()
 
-		rsrt = self.browser.find_element_by_id('resorta').send_keys("Tubigan Garden Resort")
-		time.sleep(1)
-
-		rsrt = self.browser.find_element_by_id('resortb').send_keys("Saniya Resort & Hotel")
-		time.sleep(1)
-
-		rsrt = self.browser.find_element_by_id('resortc').send_keys("Coco Valley Richnez Waterpark")
-		time.sleep(1)
-
 		rsrt = self.browser.find_element_by_id('resortd').send_keys("Volets Hotel & Resort")
 		time.sleep(1)
+
 		
 		#Admission
 
@@ -78,14 +70,9 @@ class PageTest(LiveServerTestCase):
 
 		admis = self.browser.find_element_by_id('entrance').click()
 
-		admis = self.browser.find_element_by_id('entrancea').send_keys("Day [Adult]")
+		admis = self.browser.find_element_by_id('entranceb').send_keys("Overnight [Adult]")
 		time.sleep(1)
 
-		admis = self.browser.find_element_by_id('entranceb').send_keys("Night [Adult]")
-		time.sleep(1)
-
-		admis = self.browser.find_element_by_id('entrancec').send_keys("Overnight [Adult]")
-		time.sleep(1)
 
 		#Quantity1
 
@@ -97,7 +84,8 @@ class PageTest(LiveServerTestCase):
 
 		submit = self.browser.find_element_by_name('submitbutton').click()	
 
-	def tearDown(self):
+		Nextpage = self.browser.current_url
+		self.assertRegex(Nextpage, '/success')
 		self.browser.quit()
 
 	def test_browser_second_visit(self):
@@ -113,22 +101,7 @@ class PageTest(LiveServerTestCase):
 		cont = self.browser.find_element_by_id('contact').send_keys("09123456789")
 		time.sleep(1)
 
-		rsrt = self.browser.find_element_by_id('resorta').send_keys("Tubigan Garden Resort")
-		time.sleep(1)
-
-		rsrt = self.browser.find_element_by_id('resortb').send_keys("Saniya Resort & Hotel")
-		time.sleep(1)
-
-		rsrt = self.browser.find_element_by_id('resortc').send_keys("Coco Valley Richnez Waterpark")
-		time.sleep(1)
-
 		rsrt = self.browser.find_element_by_id('resortd').send_keys("Volets Hotel & Resort")
-		time.sleep(1)
-
-		admis = self.browser.find_element_by_id('entrancea').send_keys("Day [Adult]")
-		time.sleep(1)
-
-		admis = self.browser.find_element_by_id('entranceb').send_keys("Night [Adult]")
 		time.sleep(1)
 
 		admis = self.browser.find_element_by_id('entrancec').send_keys("Overnight [Adult]")
@@ -138,9 +111,6 @@ class PageTest(LiveServerTestCase):
 		time.sleep(1)
 
 		submit = self.browser.find_element_by_name('submitbutton').click()
-
-	def tearDown(self):
-		self.browser.quit()
 
 # if __name__== '__main__':
 # 	unittest.main()																																															

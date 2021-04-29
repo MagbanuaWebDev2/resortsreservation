@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
 	path('', views.homepage),
-	path('new', views.NextPage),
+	path('success', views.NextPage, name="success"),
+	path('record', views.ThirdPage, name="record"),
 ]

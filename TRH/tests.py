@@ -1,7 +1,5 @@
-# from django.urls import resolve
 from django.test import TestCase
 from django.template.loader import render_to_string
-
 from TRH.views import homepage
 from TRH.models import Info,User
 
@@ -17,29 +15,29 @@ class HomePageTest(TestCase):
 		self.assertTrue(html.strip().startswith('<html>'))
 		self.assertTemplateUsed(response,'homepage.html')
 		self.assertIn('<title>The Resorts Hub</title>', html)
-		self.assertIn('<h1>Digital Resort Reservation</h1>', html)
-		self.assertIn('<form class="form" action="" method="POST">', html)
-		self.assertIn('<p id="Fullnamea"></p>', html)
+		self.assertIn('<h1 style="font-family: Ubuntu, sans-serif; text-align:center; margin-top: 30px;">Digital Resort Reservation</h1>', html)
+		self.assertIn('<form style="font-family: Ubuntu, sans-serif; text-align: center; padding-top: 10px; margin-left: 480px; width:400px; border-radius: 10px; box-shadow: 0 2px 8px 0 gray; height:500px;" class="form" action="" method="POST">', html)
+		self.assertIn('<p id="Fullnamea" style="font-weight:bold;">Full Name</p>', html)
 		self.assertIn('<input type="text" id="Fullname" name="Fullname" placeholder="Full Name" required/>', html)
-		self.assertIn('<p id="reservea">Date of Reservation</p>', html)
+		self.assertIn('<p id="reservea" style="font-weight:bold;">Date of Reservation</p>', html)
 		self.assertIn('<input type="date" id="reserve" name="reserve" required/>', html)
-		self.assertIn('<p id="contacta">Contact Number</p>', html)
+		self.assertIn('<p id="contacta" style="font-weight:bold;">Contact Number</p>', html)
 		self.assertIn('<input type="tel" id="contact" name="contact" placeholder="Enter your Contact Number" pattern="[0-9]{11}" required/>', html)
-		self.assertIn('<p id="resorte">Select a Resort</p>', html)
+		self.assertIn('<p id="resorte" style="font-weight:bold;">Select a Resort</p>', html)
 		self.assertIn('<select id="resort" name="resort" required>', html)
 		self.assertIn('<option id="resorta" value="Tubigan Garden Resort">Tubigan Garden Resort </option>', html)
 		self.assertIn('<option id="resortb" value="Saniya Resort & Hotel">Saniya Resort & Hotel</option>', html)
 		self.assertIn('<option id="resortc" value="Coco Valley Richnez Waterpark">Coco Valley Richnez Waterpark</option>', html)
 		self.assertIn('<option id="resortd" value="Volets Hotel & Resort">Volets Hotel & Resort</option>', html)
 		self.assertIn('</select>', html)
-		self.assertIn('<br/>', html)
-		self.assertIn('<p id="entranced">Admission (Adult)</p>', html)
+		self.assertIn('<p id="entranced" style="font-weight:bold;">Admission (Adult)</p>', html)
 		self.assertIn('<select id="entrance" name="entrance" required>', html)
 		self.assertIn('<option id="entrancea" value="Day [Adult]">Day </option>', html)
 		self.assertIn('<option id="entranceb" value="Night [Adult]">Night </option>', html)
 		self.assertIn('<option id="entrancec" value="Overnight [Adult]">Overnight</option>', html)
 		self.assertIn('<input type="number" id="admit" name="admit" placeholder="Quantity (Max of 30)" min="1" max="30" required/>', html)
 		self.assertIn('<input type="submit" name="submitbutton" value="Create a Reservation">', html)
+		self.assertIn('<br/>', html)
 		self.assertIn('</form>',html)
 		self.assertTrue(html.strip().endswith('</html>'))
 
@@ -49,7 +47,6 @@ class ORMTest(TestCase):
 	def test_saving_info(self):
 		Info1 = Info()
 		Info1.Fullname = 'Kim Magbanua'
-		# Info1.UserId = newUser
 		Info1.save()
 		Info2 = Info()
 		Info2.reserve = '2021-04-30'
@@ -117,14 +114,38 @@ class ORMTest(TestCase):
 		self.assertEqual(Info3.contact, '09123456789')
 		self.assertEqual(Info4.resort, 'Volets Hotel & Resort')
 		self.assertEqual(Info5.entrance, 'Overnight [Adult]')
-		self.assertIn(Info6.entrance, '3')
-
+		self.assertIn(Info6.admit, '3')
 
 
 class Views(TestCase):
-	def test_displays_info(self):
-		Info.objects.create(Fullname='fullname', 
-			reserve='2021-04-30', contact='contact',
-			entrance='entrance', admit='3')
-		response = self.client.get('/app/views.TRH/')
+	def setUp(self):
+		Fullname = Info.objects.create()
+		reserve = Info.objects.create()
+		contact = Info.objects.create()
+		resort = Info.objects.create()
+		entrance = Info.objects.create()
+		admit = Info.objects.create()
+
+		Info.objects.create(
+			Fullname = 'Kim Magbanua',
+			reserve = '2021-04-30',
+			contact = '09123456789',
+			resort = 'Volets Hotel & Resort',
+			entrance = 'Overnight [Adult]',
+			admit = '3',
+			)
+		self.client.post('/success')
+
+		self.assertEqual(Info.objects.count(), 7)
+
+	def test_redirects(self):
+		Fullname = Info.objects.get(Fullname="Kim Magbanua")
+		reserve = Info.objects.get(reserve="2021-04-30")
+		contact = Info.objects.get(contact="09123456789")
+		resort = Info.objects.get(resort="Volets Hotel & Resort")
+		entrance = Info.objects.get(entrance="Overnight [Adult]")
+		admit = Info.objects.get(admit="3")
+
+		response = self.client.post('/success')
+		self.assertRedirects(response, '/success')
 

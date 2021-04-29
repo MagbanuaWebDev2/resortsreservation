@@ -4,26 +4,26 @@
 	</head>
 
 	<body>
-			<h1>Digital Resort Reservation</h1>
+			<h1 style="font-family: 'Ubuntu', sans-serif; text-align:center; margin-top: 30px;">Digital Resort Reservation</h1>
 			
 
-			<form class="form" action="" method="POST">
+			<form style="font-family: 'Ubuntu', sans-serif; text-align: center; padding-top: 10px; margin-left: 480px; width:400px; border-radius: 10px; box-shadow: 0 2px 8px 0 gray; height:500px;" class="form" action="" method="POST">
 				{% csrf_token %}
 				
-				<p id="Fullnamea">Full Name</p>
+				<p id="Fullnamea" style="font-weight:bold;">Full Name</p>
 				<input type="text" id="Fullname" name="Fullname" placeholder="Full Name" required/><br/>
-				<p id="reservea">Date of Reservation</p>
+				<p id="reservea" style="font-weight:bold;">Date of Reservation</p>
 				<input type="date" id="reserve" name="reserve" required/><br/>
-				<p id="contacta">Contact Number</p>
+				<p id="contacta" style="font-weight:bold;">Contact Number</p>
 				<input type="tel" id="contact" name="contact" placeholder="Enter your Contact Number" pattern="[0-9]{11}" required/><br/>
-				<p id="resorte">Select a Resort</p>
+				<p id="resorte" style="font-weight:bold;">Select a Resort</p>
 				<select id="resort" name="resort" required>
 				<option id="resorta" value="Tubigan Garden Resort">Tubigan Garden Resort </option>
 					<option id="resortb" value="Saniya Resort & Hotel">Saniya Resort & Hotel</option>
 					<option id="resortc" value="Coco Valley Richnez Waterpark">Coco Valley Richnez Waterpark</option>
 					<option id="resortd" value="Volets Hotel & Resort">Volets Hotel & Resort</option>
 				</select> <br/>
-				<p id="entranced">Admission (Adult)</p>
+				<p id="entranced" style="font-weight:bold;">Admission (Adult)</p>
 				<select id="entrance" name="entrance" required>
 					<option id="entrancea" value="Day [Adult]">Day </option>
 					<option id="entranceb" value="Night [Adult]">Night </option>
