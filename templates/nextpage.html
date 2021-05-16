@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>The Resorts Hub</title>
+	</head>
+
+	<body>
+		<h1>Digital Resort Reservation</h1>
+		<table id="Table">
+			<tr>
+				<td>Hello, {{d.name}}!</td>
+			</tr>
+		</table>
+			<p> Contact Number: {{d.contact}}</p>
+			<p> Reservation Date: {{c.resort}}</p>
+
+		<form method="POST" action="success">
+
+
+			<p id="entranced" style="font-weight:bold;">Admission</p>
+
+			<input type="number" id="admit" name="admit" placeholder="Quantity (Max of 30)" min="1" max="30" onchange="calculateAmount(this.value)" required/><br/>
+
+				<select id="entrance" name="entrance" onchange="calculateAmount(this.value)" required>
+					<option disabled selected>Choose your option</option>
+					<option id="Day" name="Day" value="150">Day </option>
+					<option id="Night" name="Night" value="200">Night </option>
+					<option id="Overnight" name="Overnight" value="250">Overnight</option>
+			
+
+			<p> Total Amount: </p>
+			<input type="text" class name="tot_amount" id="tot_amount" readonly>
+
+			 <script>
+            function calculateAmount(val) {
+              	var quant = document.getElementById('admit');
+                var tot_price = val * quant.value;
+                /*display the result*/
+                var divobj = document.getElementById('tot_amount');
+                divobj.value = tot_price;
+            }
+        	</script>
+
+			<p id="cottaged" style="font-weight:bold;">Cottage</p>
+				<select id="cottage" name="cottage" required>
+					<option id="cottagea" value="Small Kubo [5 pax]">Small Kubo (5 pax)</option>
+					<option id="cottageb" value="Big Kubo [10 pax]">Big Kubo (10 pax)</option>
+					<option id="cottagec" value="Cavana [11-20 pax]">Cavana (11-20 pax)</option>
+					<option id="cottagec" value="Full Cavana [30 pax]">Full Cavana (30 pax)</option></select><br/><br/>
+
+		<!-- 	<p id="resorte" style="font-weight:bold;">Select a Resort</p>
+				<select id="resort" name="resort" required>
+					<option id="Tubigan" value="Tubigan Garden Resort">Tubigan Garden Resort </option>
+					<option id="Saniya" value="Saniya Resort & Hotel">Saniya Resort & Hotel</option>
+					<option id="Coco Valley" value="Coco Valley Richnez Waterpark">Coco Valley Richnez Waterpark</option>
+					<option id="Volets" value="Volets Hotel & Resort">Volets Hotel & Resort</option>
+				</select> <br/> -->
+
+
+			<p id="reserved" style="font-weight:bold;">Date of Reservation</p>
+				<input type="date" id="reserve" name="reserve" required/><br/><br/>
+
+			<input type="submit" id="inConfirm" name="inConfirm" value="Confirm"/>
+		{% csrf_token %}
+		</form>

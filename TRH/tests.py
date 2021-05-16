@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.template.loader import render_to_string
 from TRH.views import homepage
 from TRH.models import Info,User
+from django.urls import resolve
 
 
 class HomePageTest(TestCase):
@@ -93,7 +94,7 @@ class Models(TestCase):
 			entrance="entrance",
 			admit="admit", )
 
-	def test_whatever_creation(self):
+	def test_generated(self):
 		new = self.confirm()
 		self.assertTrue(isinstance(new, User))
 		self.assertFalse(isinstance(new, Info))
@@ -191,19 +192,6 @@ class ORMTest(TestCase):
 		self.assertEqual(Info5.entrance, 'Overnight [Adult]')
 		self.assertIn(Info6.admit, '3')
 
-class URL(TestCase):
-
-	def urls(self):
-		found = resolve()
-		self.assertEqual(found.func, homepage)
-		self.assertEqual(found.func, NextPage)
-
-		url = reverse('index')
-		self.assertEqual(resolve(url).func, Index)
-
-		url = reverse('next')
-		self.assertEqual(resolve(url).func, NextPage)
-
 
 class Views(TestCase):
 	def setUp(self):
@@ -226,14 +214,36 @@ class Views(TestCase):
 
 		self.assertEqual(Info.objects.count(), 7)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	# def test_redirect_view(self):
 	# 	Fullname = Info.objects.get(Fullname="Kim Magbanua")
 	# 	reserve = Info.objects.get(reserve="2021-04-30")
-	# 	contact = Info.objects.get(contact="09123456789")
-	# 	resort = Info.objects.get(resort="Volets Hotel & Resort")
-	# 	entrance = Info.objects.get(entrance="Overnight [Adult]")
-	# 	admit = Info.objects.get(admit="3")
+	# 	contact = Info.objects.get(contact="Kim Magbanua")
+	# 	resort = Info.objects.get(resort="2021-04-30")
+	# 	entrance = Info.objects.get(entrance="Kim Magbanua")
+	# 	admit = Info.objects.get(admit="2021-04-30")
 
 	# 	response = self.client.post('/success')
-	# 	self.assertRedirects(response, '/success')
-
+	# 	self.assertRedirects(response,'/success')

@@ -8,15 +8,15 @@
 			<div class='trh' style="position: relative; margin-left: 480px; width:400px; border-radius: 10px; display: inline-block; background-color:white; font-family:'Ubuntu', sans-serif; text-align: center; box-shadow: 0 2px 8px 0 gray;">
 
 				<p style="font-weight: bold;">Name</p>
-				<p>{{trh.Fullname}}</p>
+				<p>{{d.name}}</p>
 				<p style="font-weight: bold;">Date of Reservation</p>
-				<p>{{trh.reserve}}</p>
+				<p>{{c.resort}}</p>
 				<p style="font-weight: bold;">Contact No.</p>
-				<p>{{trh.contact}}</p>
+				<p>{{d.contact}}</p>
 				<p style="font-weight: bold;">Chosen Resort</p>
-				<p>{{trh.resort}}</p>
+				<p>{{obj.reserve}}</p>
 				<p style="font-weight: bold;">Admission</p>
-				<p>{{trh.entrance}} x{{trh.admit}} </p>
+				<p>{{b.get_entrance_display}} <br/> &#8369;{{b.entrance}}.00x{{b.admit}} <br/> &#8369;{{b.tot_amount}}.00  </p>
 			</div>
 	</body>
 </html>
