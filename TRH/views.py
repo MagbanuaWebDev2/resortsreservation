@@ -1,5 +1,5 @@
 from django.shortcuts import redirect,render
-from .models import Admission, Resort, Customer, Cottage, Reservation
+from .models import Admission, Resort, Customer, Cottage, Reservation, Card
 # from .models import User, Info
 
 def homepage(request):
@@ -37,14 +37,23 @@ def NextPage(request):
 	admit=Admission.objects.create(
 		entrance = request.POST['entrance'],
 		admit = request.POST['admit'],
-		tot_amount = request.POST['tot_amount']
+		pricea = request.POST['pricea']
 		)
 
 	cottage=Cottage.objects.create(
-		cottage = request.POST['cottage'])
+		cottage = request.POST['cottage'],)
+		# quant = request.POST['quant'],
+		# priceb = request.POST['priceb'])
+
 
 	reserve=Reservation.objects.create(
-		reserve=request.POST['reserve'])
+		reserve=request.POST['reserve'],)
+		# tot_amount=request.POST['tot_amount'])
+
+	#	crdtcard=Card.objects.create(
+		# cardname = request.POST['cardname'],
+		# expdate = request.POST['expdate'],
+		# code = request.POST['code'])
 
 	d=Customer.objects.last
 	c=Resort.objects.last
@@ -60,10 +69,6 @@ def NextPage(request):
 		'd':d}
 	)
 
-# def Nextpage(request, customerId):
-
-# 	
-	
 
 
 
@@ -159,3 +164,55 @@ def NextPage(request):
 		# mvg.reserve = reserve
 		# mvg.contact = contact
 		# mvg.save()
+
+
+
+
+
+
+
+#papasa kay sir dong tentative
+# from django.shortcuts import redirect,render
+# from .models import Admission, Resort, Customer, Cottage, Reservation, Card
+
+# def homepage(request):
+
+# 	return render(request,'homepage.html')
+
+# def AnotherPage(request):
+
+# 	customerId=Customer.objects.create(
+# 		name = request.POST['name'],
+# 		contact = request.POST['contact'],
+# 		email = request.POST['email']
+# 		)
+
+# 	resortId=Resort.objects.create(
+# 		resort = request.POST['resort'])
+
+# 	return render(request,'nextpage.html')
+
+# def NextPage(request):
+
+# 	admit=Admission.objects.create(
+# 		entrance = request.POST['entrance'],
+# 		admit = request.POST['admit'],
+# 		pricea = request.POST['pricea']
+# 		)
+
+# 	cottage=Cottage.objects.create(
+# 		cottage = request.POST['cottage'],
+# 		quant = request.POST['quant'],
+# 		priceb = request.POST['priceb'])
+
+# 	reserve=Reservation.objects.create(
+# 		reserve=request.POST['reserve'],
+# 		tot_amount=request.POST['tot_amount'])
+
+#	crdtcard=Card.objects.create(
+		# cardname = request.POST['cardname'],
+		# expdate = request.POST['expdate'],
+		# code = request.POST['code'])
+
+# 	return render(request,'receipt.html')
+

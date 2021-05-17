@@ -1,9 +1,15 @@
 from django.db import models
 
+class Card(models.Model):	
+	cardname = models.TextField()
+	expdate = models.DateField()
+	code = models.CharField(max_length=4)
+
 class Customer(models.Model):
-	name = models.TextField(default="")
-	contact = models.CharField(max_length=11, null=True)
-	email = models.CharField(max_length=100, null=True)
+	name = models.TextField()
+	contact = models.CharField(max_length=11)
+	email = models.CharField(max_length=100)
+	card = models.OneToOneField(Card, null=True, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.name
@@ -18,8 +24,7 @@ class Admission(models.Model):
 	)
 	entrance = models.CharField(max_length=50, choices=entrchoice)
 	admit = models.IntegerField(default='1')
-	tot_amount = models.IntegerField(default='0')
-
+	pricea = models.IntegerField(default='150')
 
 class Cottage(models.Model):
 	# ResortID = models.ForeignKey(Resort, default=None, on_delete=models.CASCADE)
@@ -31,6 +36,8 @@ class Cottage(models.Model):
 		('Full Cavana [30 pax]', 'Full Cavana [30 pax]')
 	)
 	cottage = models.TextField(choices=cottagechoice)
+	quant = models.IntegerField(default='100')
+	priceb = models.IntegerField(default='300')
 
 	def __str__(self):
 		return self.cottage
@@ -53,57 +60,9 @@ class Resort(models.Model):
 class Reservation(models.Model):
 	reserve = models.DateField(null=True)
 	customer = models.ForeignKey(Customer, null=True, on_delete=models.CASCADE)
-	resortchosen = models.ForeignKey(Resort, null=True,  on_delete=models.CASCADE)
+	resortchosen = models.ForeignKey(Resort, null=True, on_delete=models.CASCADE)
+	tot_amount = models.IntegerField(default='0')
 	
-	
-
-
-
-
-
-
-
-
-# from django.db import models
-
-# class Customer(models.Model):
-# 	name = models.TextField(default="")
-# 	contact = models.CharField(max_length=11, null=True)
-# 	reserve = models.DateField(null=True)
-
-# 	def __str__(self):
-# 		return self.name
-
-# class Resort(models.Model):
-# 	customerId=models.ManyToManyField(Customer)
-# 	rchoice=(('Tubigan','Tubigan Garden Resort'),('Saniya', 'Saniya Resort & Hotel'),
-# 	('Coco Valley', 'Coco Valley Richnez Waterpark'),('Volets','Volets Hotel & Resort'))
-# 	resort = models.TextField(choices=rchoice, default='none')
-
-# 	def __str__(self):
-# 		return self.resort
-
-# class Admission(models.Model):
-# 	ResortId = models.ForeignKey(Resort, default=None, on_delete=models.CASCADE)
-# 	entrchoice=(('Day','Day [Adult]'),('Night', 'Night [Adult]'),
-# 		('Overnight', 'Overnight [Adult'))
-# 	entrance = models.CharField(max_length=10, choices=entrchoice, default='none')
-# 	admit = models.IntegerField(default='1')
-
-# 	def __str__(self):
-# 		return self.entrance
-
-# class Cottage(models.Model):
-# 	ResortID = models.ForeignKey(Resort, default=None, on_delete=models.CASCADE)
-# 	cottagechoice=(('cottagea','Small Kubo [5 pax]'),('cottageb', 'Big Kubo [10 pax]'),
-# 		('cottagec', 'Cavana [11-20 pax]'), ('cottaged', 'Full Cavana [30 pax]'))
-# 	cottage = models.CharField(max_length=10, choices=cottagechoice, default='none')
-
-# 	def __str__(self):
-# 		return self.cottage
-
-
-
 
 
 
@@ -132,7 +91,6 @@ class Reservation(models.Model):
 # 	entrance = models.TextField(choices=entrchoice)
 # 	admit = models.IntegerField(default='1')
 	
-
 # 	def __str__(self):
 # 		return self.entrance
 
@@ -146,6 +104,7 @@ class Reservation(models.Model):
 # 		('Full Cavana [30 pax]', 'Full Cavana [30 pax]')
 # 	)
 # 	cottage = models.TextField(choices=cottagechoice)
+#	quant = models.IntegerField(default='1')
 
 # 	def __str__(self):
 # 		return self.cottage

@@ -25,18 +25,18 @@
 					<option id="Day" name="Day" value="150">Day </option>
 					<option id="Night" name="Night" value="200">Night </option>
 					<option id="Overnight" name="Overnight" value="250">Overnight</option>
-			
+				</select>			
 
 			<p> Total Amount: </p>
-			<input type="text" class name="tot_amount" id="tot_amount" readonly>
+			<input type="text" class name="pricea" id="pricea" readonly>
 
 			 <script>
             function calculateAmount(val) {
               	var quant = document.getElementById('admit');
-                var tot_price = val * quant.value;
+                var pricea = val * quant.value;
                 /*display the result*/
-                var divobj = document.getElementById('tot_amount');
-                divobj.value = tot_price;
+                var divobj = document.getElementById('pricea');
+                divobj.value = pricea;
             }
         	</script>
 
