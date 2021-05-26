@@ -1,0 +1,139 @@
+<html>
+	<head>
+		<title>The Resorts Hub</title>
+	</head>
+
+	<body>
+		<h1>Digital Resort Reservation</h1>
+		<table id="Table">
+			<tr>
+				<td>Hello, {{d.name}}!</td>
+			</tr>
+		</table>
+			<p> Contact Number: {{d.contact}}</p>
+
+		<form method="POST" action="success">
+
+				<p id="resorte" style="font-weight:bold;">Select a Resort</p>
+				<select id="resort" name="resort" onclick="divisionSelectHandler(this)" required>
+					<option id="none" name="none" value="none" disabled selected>Choose your option</option>
+					<option id="Tubigan" value="Tubigan Garden Resort">Tubigan Garden Resort </option>
+					<option id="Saniya" value="Saniya Resort & Hotel">Saniya Resort & Hotel</option>
+					<option id="Coco Valley" value="Coco Valley Richnez Waterpark">Coco Valley Richnez Waterpark</option>
+					<option id="Volets" value="Volets Hotel & Resort">Volets Hotel & Resort</option>
+				</select> <br>
+
+
+			<p id="entranced" style="font-weight:bold;">Admission</p>
+
+			<select id="entrance" name="entrance" onchange="calculateAmount(this.value)" required>
+				<option disabled selected>Choose your option</option>
+				<optgroup name="A" id="A" label="Tubigan">
+					<option id="DayA" name="Day" value="150">Day </option>
+					<option id="NightA" name="Night" value="200">Night </option>
+					<option id="OvernightA" name="Overnight" value="250">Overnight</option>
+				</optgroup>
+				<optgroup name="B" id="B" label="Saniya">
+					<option id="DayB" name="Day" value="200">Day </option>
+					<option id="NightB" name="Night" value="250">Night </option>
+					<option id="OvernightB" name="Overnight" value="300">Overnight</option>
+				</optgroup>
+			</select>
+
+			<input type="number" id="admit" name="admit" placeholder="Quantity (Max of 30)" min="1" max="30" oninput="calculateAmount(this.value)" onmouseleave="total()" required/><br/>
+
+			<p> Total Amount: </p>
+			<input type="text" class name="pricea" id="pricea" readonly>
+
+			 <script>
+            function calculateAmount() {
+            	var price = document.getElementById('entrance')
+              	var quant = document.getElementById('admit');
+                var pricea = quant.value*price.value ;
+                /*display the result*/
+                var divobja = document.getElementById('pricea');
+                divobja.value = pricea;
+                return pricea;
+            }
+
+
+            function divisionSelectHandler(select){
+
+            	if (select.value == 'none'){
+			            var ele = document.getElementById('A')
+			            ele.style.display = 'none'
+			            var ele = document.getElementById('B')
+			            ele.style.display = 'none'
+			    }
+
+			    else if (select.value == 'Tubigan Garden Resort'){
+			            var ele = document.getElementById('A')
+			            ele.style.display = 'block'
+			            var ele = document.getElementById('B')
+			            ele.style.display = 'none'
+			    }
+
+			    else if (select.value == 'Saniya Resort & Hotel'){
+			            var ele = document.getElementById('A')
+			            ele.style.display = 'none'
+			            var ele = document.getElementById('B')
+			            ele.style.display = 'block'
+
+			    }
+
+
+/*			    else {
+			        var ele = document.getElementById('test54')
+			        ele.style.display = "block"
+			        var ele = document.getElementById('test55')
+			        ele.style.display = "block"
+			    }
+*/			
+}
+
+        	</script>
+
+			<p id="cottaged" style="font-weight:bold;">Cottage</p>
+				<select id="cottage" name="cottage" onchange="calculateValue(this.value)" required>
+					<option id="cottagea" value="200">Small Kubo (5 pax)</option>
+					<option id="cottageb" value="300">Big Kubo (10 pax)</option>
+					<option id="cottagec" value="500">Cavana (11-20 pax)</option>
+					<option id="cottagec" value="1000">Full Cavana (30 pax)</option></select>
+
+			<input type="number" id="quant" name="quant" placeholder="Quantity (Max of 3)" min="1" max="3" oninput="calculateValue(this.value)" onmouseleave="total()" required/><br/>
+
+
+			<p> Total Amount: </p>
+			<input type="text" class name="priceb" id="priceb" readonly>
+
+			<p> Grand Total Amount: </p>
+			<input type="text" class name="tot_amount" id="tot_amount" readonly>
+
+			<script>
+            function calculateValue() {
+            	var price = document.getElementById('cottage')
+              	var quant = document.getElementById('quant');
+                var priceb = quant.value*price.value ;
+                /*display the result*/
+                var divobjb = document.getElementById('priceb');
+                divobjb.value = priceb;
+                return priceb;
+            }
+            function total() {
+               	sum = calculateAmount() + calculateValue();
+                /*display the result*/
+                var divobjc = document.getElementById('tot_amount');
+                divobjc.value = sum;
+
+             }
+
+
+        	</script>
+
+
+			<p id="reserved" style="font-weight:bold;">Date of Reservation</p>
+				<input type="date" id="reserve" name="reserve" required/><br/><br/>
+
+			<input type="submit" id="inConfirm" name="inConfirm" value="Confirm"/>
+		{% csrf_token %}
+		</form>

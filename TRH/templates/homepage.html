@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>The Resorts Hub</title>
+	</head>
+
+	<body>
+		<h1>Digital Resort Reservation</h1>
+
+		<form method="POST" action="new">
+
+			<label style="font-weight: bold;">Name</label><br/><br/>
+				<input type="text" id="name" name="name" placeholder="Enter your name"
+				/><br/>
+
+			<p id="contacta" style="font-weight:bold;">Contact Number</p>
+				<input type="tel" id="contact" name="contact" placeholder="Enter your Contact Number" pattern="[0-9]{11}" required/><br/>
+
+			<p id="emailacc" style="font-weight:bold;">Email Address</p>
+				<input type="email" id="email" name="email" placeholder="Enter your Email Address" required/><br/>
+
+		
+
+
+<!-- 			<p id="reserved" style="font-weight:bold;">Date of Reservation</p>
+				<input type="date" id="reserve" name="reserve" required/><br/><br/> -->
+
+
+			<input type="submit" id="inConfirm" name="inConfirm" value="Confirm"/>
+		{% csrf_token %}
+	</form>
+
+</body>
+</html>

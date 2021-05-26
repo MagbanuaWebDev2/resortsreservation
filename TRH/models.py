@@ -30,14 +30,14 @@ class Cottage(models.Model):
 	# ResortID = models.ForeignKey(Resort, default=None, on_delete=models.CASCADE)
 		# resort = models.OneToOneField(Resort, on_delete=models.CASCADE)
 	cottagechoice=(
-		('Small Kubo [5 pax]','Small Kubo [5 pax]'),
-		('Big Kubo [10 pax]', 'Big Kubo [10 pax]'),
-		('Cavana [11-20 pax]', 'Cavana [11-20 pax]'), 
-		('Full Cavana [30 pax]', 'Full Cavana [30 pax]')
+		('200','Small Kubo [5 pax]'),
+		('300', 'Big Kubo [10 pax]'),
+		('500', 'Cavana [11-20 pax]'), 
+		('1000', 'Full Cavana [30 pax]')
 	)
 	cottage = models.TextField(choices=cottagechoice)
-	quant = models.IntegerField(default='100')
-	priceb = models.IntegerField(default='300')
+	quant = models.IntegerField()
+	priceb = models.IntegerField()
 
 	def __str__(self):
 		return self.cottage

@@ -14,17 +14,12 @@ def AnotherPage(request):
 		email = request.POST['email']
 		)
 
-	resortId=Resort.objects.create(
-		resort = request.POST['resort'])
-
 	# ReservationId=Reservation.objects.create(
 	# 	reserve = request.POST['reserve'])
 
 	d=Customer.objects.last
-	c=Resort.objects.last
 
 	return render(request,'nextpage.html', {
-		'c':c,
 		'd':d}
 	)
 
@@ -32,7 +27,8 @@ def NextPage(request):
 
 	# customer=Customer.objects.get(id=customer)
 	# resort=Resort.objects.get(id=resort)
-
+	resortId=Resort.objects.create(
+		resort = request.POST['resort'])
 
 	admit=Admission.objects.create(
 		entrance = request.POST['entrance'],
@@ -41,14 +37,14 @@ def NextPage(request):
 		)
 
 	cottage=Cottage.objects.create(
-		cottage = request.POST['cottage'],)
-		# quant = request.POST['quant'],
-		# priceb = request.POST['priceb'])
+		cottage = request.POST['cottage'],
+		quant = request.POST['quant'],
+		priceb = request.POST['priceb'])
 
 
 	reserve=Reservation.objects.create(
-		reserve=request.POST['reserve'],)
-		# tot_amount=request.POST['tot_amount'])
+		reserve=request.POST['reserve'],
+		tot_amount=request.POST['tot_amount'])
 
 	#	crdtcard=Card.objects.create(
 		# cardname = request.POST['cardname'],
