@@ -25,8 +25,6 @@ def AnotherPage(request):
 
 def NextPage(request):
 
-	# customer=Customer.objects.get(id=customer)
-	# resort=Resort.objects.get(id=resort)
 	resortId=Resort.objects.create(
 		resort = request.POST['resort'])
 

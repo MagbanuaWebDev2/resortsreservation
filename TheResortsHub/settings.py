@@ -25,7 +25,7 @@ SECRET_KEY = 'ke-9_^6x0bfs)t)(j8)6*uphuf8_0vx#2xv#7kwb*og2pmtb_x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['resortsreservation.com', 'localhost']
+ALLOWED_HOSTS = ['resortsreservation.com']
 
 
 # Application definition
