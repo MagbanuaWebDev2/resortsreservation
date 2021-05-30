@@ -6,7 +6,8 @@ class Card(models.Model):
 	code = models.CharField(max_length=4)
 
 class Customer(models.Model):
-	name = models.CharField(max_length=20)
+	firstname = models.CharField(max_length=20)
+	lastname = models.CharField(max_length=20)
 	contact = models.CharField(max_length=11)
 	email = models.EmailField(max_length=100)
 	card = models.OneToOneField(Card, null=True, on_delete=models.CASCADE)

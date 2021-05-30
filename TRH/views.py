@@ -9,7 +9,8 @@ def homepage(request):
 def AnotherPage(request):
 
 	customerId=Customer.objects.create(
-		name = request.POST['name'],
+		firstname = request.POST['firstname'],
+		lastname = request.POST['lastname'],
 		contact = request.POST['contact'],
 		email = request.POST['email']
 		)
