@@ -34,7 +34,35 @@ class Resort(models.Model):
 
 class Admission(models.Model):
 	resorts = models.OneToOneField(Resort, null=True, on_delete=models.CASCADE)
-	entrance = models.CharField(max_length=30)
+
+	entrchoice=(
+		('200','Day'),
+		('250', 'Night'),
+		('150', 'Day'),
+		('180', 'Night'),
+		('210', 'Overnight'),
+		('170', 'Day'),
+		('190', 'Night'),
+		('220', 'Overnight'),
+		('270', 'Day'),
+		('280', 'Night'),
+		('300', 'Overnight'),
+		('230', 'Day'),
+		('260', 'Night'),
+		('310', 'Overnight'),
+		('140', 'Day'),
+		('185', 'Night'),
+		('130', 'Day'),
+		('100', 'Day'),
+		('120', 'Night'),
+		('160', 'Overnight'),
+		('135', 'Day'),
+		('155', 'Night'),
+		('175', 'Overnight')
+
+	)
+
+	entrance = models.CharField(max_length=30, choices=entrchoice)
 	admit = models.IntegerField(default='1')
 	pricea = models.IntegerField(default='100')
 
@@ -46,7 +74,47 @@ class Admission(models.Model):
 
 class Cottage(models.Model):
 	resorts = models.OneToOneField(Resort, null=True, on_delete=models.CASCADE)
-	cottage = models.CharField(max_length=100)
+
+	cotchoice=(
+		('750','Small Kubo (6 pax)'),
+		('1000', 'Medium Kubo (12 pax)'),
+		('1200', 'Large Kubo (15 pax)'),
+		('1250', 'Open Kubo (20 pax)'),
+		('900', 'Gazebo (9 pax)'),
+		('300', 'Gazebo (4 pax)'),
+		('500', 'Small Kubo (8 pax)'),
+		('600', 'Medium Kubo (10 pax)'),
+		('800', 'Large Kubo (15 pax)'),
+		('650', 'Peach Cottage (10 pax)'),
+		('1300', 'Violet Cottage (25 pax)'),
+		('400', 'Small Kubo (5 pax)'),
+		('670', 'Big Kubo (8-10 pax)'),
+		('700', 'Small Cavana (8 pax)'),
+		('1400', 'Kubo Cavana (10-12 pax)'),
+		('1800', 'Full Cavana (20 pax)'),
+		('350', 'Umbrella (4 pax)'),
+		('380', 'Short Table (6 pax)'),
+		('550', 'Petits Cottage (10 pax)'),
+		('850', 'Grande Cottage (20 pax)'),
+		('2000', 'Big Nipa Hut (30 pax)'),
+		('520', 'Regular Cottage (10 pax)'),
+		('1220', 'Big Cottage (25 pax)'),
+		('470', 'Bahay Kubo (2 pax)'),
+		('450', 'Regular Cottage (10 pax)'),
+		('630', 'Regular Cottage (16 pax)'),
+		('420', 'Small Kubo (8 pax)'),
+		('510', 'Big Kubo (10 pax)'),
+		('340', 'Tent (6 pax)'),
+		('330', 'Table with Umbrella (4 pax)'),
+		('460', 'Regular Cottage (15-20 pax)'),
+		('280', 'Table (8-10 pax)'),
+		('250', 'Umbrella (4 pax)'),
+		('1210', 'Family Kubo (20 pax)'),
+		('620', 'Kubo with sink (12 pax)'),
+		('310', 'Table (6 pax)')
+	)
+
+	cottage = models.CharField(max_length=100, choices=cotchoice)
 	quant = models.IntegerField()
 	priceb = models.IntegerField()
 
@@ -72,75 +140,5 @@ class Reservation(models.Model):
 
 
 
-	# cotchoice=(
-	# 	('1','Small Kubo (6 pax)'),
-	# 	('2', 'Medium Kubo (12 pax)'),
-	# 	('3', 'Large Kubo (15 pax)'),
-	# 	('4', 'Open Kubo (20 pax)'),
-	# 	('5', 'Gazebo (9 pax)'),
-	# 	('6', 'Gazebo (4 pax)'),
-	# 	('7', 'Small Kubo (8 pax)'),
-	# 	('8', 'Medium Kubo (10 pax)'),
-	# 	('9', 'Large Kubo (15 pax)'),
-	# 	('10', 'Peach Cottage (10 pax)'),
-	# 	('11', 'Violet Cottage (25 pax)'),
-	# 	('12', 'Small Kubo (5 pax)'),
-	# 	('13', 'Big Kubo (8-10 pax)'),
-	# 	('14', 'Small Cavana (8 pax)'),
-	# 	('15', 'Kubo Cavana (10-12 pax)'),
-	# 	('16', 'Full Cavana (20 pax)'),
-	# 	('17', 'Umbrella (4 pax)'),
-	# 	('18', 'Short Table (6 pax)'),
-	# 	('19', 'Petits Cottage (10 pax)'),
-	# 	('20', 'Grande Cottage (20 pax)'),
-	# 	('21', 'Big Nipa Hut (30 pax)'),
-	# 	('22', 'Regular Cottage (10 pax)'),
-	# 	('23', 'Big Cottage (25 pax)'),
-	# 	('24', 'Bahay Kubo (2 pax)'),
-	# 	('25', 'Regular Cottage (10 pax)'),
-	# 	('26', 'Regular Cottage (16 pax)'),
-	# 	('27', 'Small Kubo (8 pax)'),
-	# 	('28', 'Big Kubo (10 pax)'),
-	# 	('29', 'Tent (6 pax)'),
-	# 	('30', 'Table with Umbrella (4 pax)'),
-	# 	('31', 'Regular Cottage (15-20 pax)'),
-	# 	('32', 'Table (8-10 pax)'),
-	# 	('33', 'Umbrella (4 pax)'),
-	# 	('34', 'Family Kubo (20 pax)'),
-	# 	('35', 'Kubo with sink (12 pax)'),
-	# 	('36', 'Table (6 pax)'),
-	# 	('37', 'Regular Cottage (8 pax)'),
-	# 	('38', 'Regular Cottage (12 pax)'),
-	# 	('39', 'Regular Cottage (15 pax)'),
-	# 	('40', 'Gazebo Kubo (15 pax)'),
-	# 	('1500', 'Elevated Floor (20 pax)')
 
-	# )
 
-	# 	entrchoice=(
-	# 	('200','Day'),
-	# 	('200', 'Night'),
-	# 	('150', 'Day'),
-	# 	('180', 'Night'),
-	# 	('180', 'Overnight'),
-	# 	('150', 'Day'),
-	# 	('180', 'Night'),
-	# 	('180', 'Overnight'),
-	# 	('250', 'Day'),
-	# 	('250', 'Night'),
-	# 	('300', 'Overnight'),
-	# 	('200', 'Day'),
-	# 	('250', 'Night'),
-	# 	('300', 'Overnight'),
-	# 	('150', 'Day'),
-	# 	('170', 'Night'),
-	# 	('130', 'Day'),
-	# 	('100', 'Day'),
-	# 	('120', 'Night'),
-	# 	('150', 'Overnight'),
-	# 	('130', 'Day'),
-	# 	('150', 'Night'),
-	# 	('170', 'Overnight'),
-	# 	('200', 'Day')
-
-	# )
