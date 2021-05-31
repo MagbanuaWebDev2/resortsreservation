@@ -5,7 +5,7 @@ urlpatterns = [
 	path('', views.homepage),
 	path('new', views.AnotherPage, name="new"),
 	path('success', views.NextPage, name="success"),
-	# path('success', views.Nextpage, name="success"),
+	path("update_server/", views.update, name="update"),
 ]
 
 
