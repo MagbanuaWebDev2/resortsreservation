@@ -1,9 +1,11 @@
 from django.db import models
 
 class Card(models.Model):	
-	cardname = models.TextField()
-	expdate = models.DateField()
-	code = models.CharField(max_length=4)
+	cardname = models.CharField(max_length=50)
+	cardnum = models.IntegerField()
+	expmonth = models.CharField(max_length=8)
+	expyear = models.CharField(max_length=4)
+	code = models.CharField(max_length=3)
 
 class Customer(models.Model):
 	firstname = models.CharField(max_length=20)
