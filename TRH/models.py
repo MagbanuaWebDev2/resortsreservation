@@ -1,11 +1,11 @@
 from django.db import models
 
 class Card(models.Model):	
-	cardname = models.CharField(max_length=50)
-	cardnum = models.IntegerField()
-	expmonth = models.CharField(max_length=8)
-	expyear = models.CharField(max_length=4)
-	code = models.CharField(max_length=3)
+	cardname = models.CharField(max_length=50, null=True)
+	cardnum = models.CharField(max_length=20, null=True)
+	expmonth = models.CharField(max_length=8, null=True)
+	expyear = models.CharField(max_length=4, null=True)
+	code = models.CharField(max_length=3, null=True)
 
 class Customer(models.Model):
 	firstname = models.CharField(max_length=20)
@@ -15,7 +15,7 @@ class Customer(models.Model):
 	card = models.OneToOneField(Card, null=True, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.name
+		return self.firstname
 
 class Resort(models.Model):
 	rchoice=(
