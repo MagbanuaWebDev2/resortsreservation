@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+}
+
+
+.topnav {  
+/*  overflow: hidden;
+*/  background-color:#1a2f31;
+  padding-left: 10px;
+  position: fixed;
+  transition: top 0.3s;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 100px;
+
+
+}
+
+.topnav img {
+  max-width: 100%;
+  height: auto; 
+  padding-top: 4px;
+  padding-left: 650px;
+}
+
+.main h1 {
+	padding-top: 70px;
+	text-align: center;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+	color: #FFCC57;
+	text-shadow: 2px 3px 8px black;
+
+}
+
+
+.card {
+  position: relative;
+  display: inline-block;
+  background-color: white;
+  width: 500px;
+  height: 400px;
+  margin-top: 20px;
+  margin-left: 430px;
+  padding-top: 20px;
+  border-radius: 20px;
+}
+
+.card p{
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  margin-top: 8px;
+  color:#1a2f31;
+  padding-left: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.card a{
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  color:#1a2f31;
+  padding-left: 20px;
+  font-weight: 600;
+}
+
+.unaf{
+  position: fixed;
+  margin-top:30px;
+  width: 200px;
+  height: 35px;
+  background-color: white;
+  border: none;
+  text-decoration: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+
+.unaf:hover {
+  background-color: #FFCC57;
+  box-shadow: 0px 7px 10px rgba(72,154,194, 0.1);
+  color: #1a2f31;
+  transform: translateY(-2px);
+}
+
+.unaf p {
+  font-family: 'Rubik', sans-serif;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #1a2f31;
+  text-decoration: none;
+
+}
+
+.cardc {
+  position: fixed;
+  width: 370px;
+  height: 435px;
+  margin-left: 410px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+

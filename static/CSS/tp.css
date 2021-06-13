@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  overflow: hidden;
+}
+
+
+.topnav {  
+  background-color:#1a2f31;
+  padding-left: 10px;
+  position: fixed;
+  transition: top 0.3s;
+  z-index: 2;
+  width: 100%;
+  height: 50px;
+
+
+}
+
+.topnav img {
+  max-width: 100%;
+  height: auto; 
+  padding-top: 4px;
+  padding-left: 650px;
+}
+
+.card {
+  position: relative;
+  display: inline-block;
+  background-color: #1a2f31;
+  width: 535px;
+  height: 100px;
+  margin-top: 5px;
+  margin-left: 400px;
+  padding-top: 10px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 1px 2px 5px #1a2f317a;
+  transition: all 0.3s ease-in-out;
+}
+
+.cardb {
+  position: relative;
+  display: inline-block;
+  background-color: #1a2f31;
+  width: 535px;
+  height: 380px;
+  margin-top: 5px;
+  margin-left: 400px;
+  padding-top: 10 px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 1px 2px 5px #1a2f317a;
+  transition: all 0.3s ease-in-out;
+}
+
+.dvtext {
+  display: none;
+}
+       
+#yes:checked ~ .dvtext {
+  display: block;
+}
+
+
+#yes:checked ~ .cardb {
+  position: relative;
+  height: 1000px;
+}
+
+
+
+.details {
+  margin-top:1px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-align: center;
+  padding-left: 7px;
+  width: 300px;
+  height: 25px;
+  border-style: none;
+  outline: none;
+  border-radius: 20px;
+ }
+
+
+
+.unaa{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  padding-top: 60px;
+  padding-left: 590px;
+  margin-bottom: 10px;
+  color: #FFCC57;
+  text-shadow: 1px 1px 4px black;
+
+ }
+
+
+.una {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+  padding-bottom: 5px;
+  padding-top: 2px;
+	color: #FFCC57;
+ }
+
+.unapa {
+	margin-top: 10px;
+	font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+ 	letter-spacing: 1px;
+ 	text-align: center;
+	padding-left: 7px;
+	width: 200px;
+	height: 30px;
+	border-style: none;
+	outline: none;
+	border-radius: 20px;
+  -moz-appearance: textfield;
+ }
+
+
+.unae{
+  margin-top:20px;
+  width: 100px;
+  height: 30px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.unae:hover {
+  background-color: #FFCC57;
+  box-shadow: 0px 7px 10px rgba(72,154,194, 0.1);
+  color: #1a2f31;
+  transform: translateY(-2px);
+}
+
+.cardc {
+  position: relative;
+  display: inline-block;
+  width: 370px;
+  height: 435px;
+  margin-left: 490px;
+  border-radius: 20px;
+  text-align: center;
+}
