@@ -2,10 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-	path('', views.homepage),
+	path('', views.homepage, name="home"),
+	path('reserve', views.secondpage, name='reserve'),
 	path('new', views.AnotherPage, name="new"),
-	path('success', views.NextPage, name="success"),
-	path("update_server/", views.update, name="update"),
+	path('date', views.NextPage, name="date"),
+	path('success', views.LastPage, name="success"),
+	path('carddetails', views.Extra, name="carddetails")
 ]
 
 

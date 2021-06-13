@@ -1,16 +1,24 @@
+{% load static %}
 <html>
 	<head>
-		<title>The Resorts Hub</title>
+		<title>Resorts Reservation</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'CSS/np.css' %}">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 	</head>
 
-	<body>
-		<h1>Digital Resort Reservation</h1>
-			<p> Hello!</p><p> Contact Number</p>
+	<body style="background: linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.500)), url('{% static 'IMAGE/aa.jpg' %}') no-repeat fixed; background-size: cover;">
 
-		<form method="POST" action="success">
+		<div class="topnav" >
+				<img src="{% static 'IMAGE/logo.png' %}">
+			</div>
+			<p class="unaa"> Hello, Name Here!</p>
 
-				<p id="resorte" style="font-weight:bold;">Select a Resort</p>
-				<select id="resort" name="resort" onclick="divisionSelectHandler(this); newdivisionSelectHandler(this)" required>
+		<form method="POST" action="date">
+				<div class='card'>
+				<p id="resorte" class="una">Select a Resort</p>
+				<select id="resort" name="resort" class="unaf" onclick="divisionSelectHandler(this); newdivisionSelectHandler(this)" required>
 					<option id="none" name="none" value="none" disabled selected hidden>Choose your option</option>
 					<option id="Tubigan" value="Tubigan Garden Resort">Tubigan Garden Resort </option>
 					<option id="Saniya" value="Saniya Resort & Hotel">Saniya Resort & Hotel</option>
@@ -23,9 +31,9 @@
 					<option id="Qubo" value="Qubo Qabana Resort">Qubo Qabana Resort</option>
 				</select>
 
-			<p id="entranced" style="font-weight:bold;">Admission</p>
+			<p id="entranced" class="una">Admission</p>
 
-			<select id="entrance" name="entrance" onchange="calculateAmount(this.value)" required>
+			<select id="entrance" name="entrance" class="unag" onchange="calculateAmount(this.value)" required>
 				<option disabled selected hidden>Choose your option</option>
 				<optgroup name="A" id="A" label="Tubigan">
 					<option id="DayA" name="Day" value="200">Day </option>
@@ -70,9 +78,9 @@
 				</optgroup>
 			</select>
 
-			<input type="number" id="admit" name="admit" placeholder="Quantity (Max of 30)" min="1" max="30" oninput="calculateAmount(this.value)" onmouseleave="total()" required/>
+			<input type="number" id="admit" name="admit" class="unapa" placeholder="Quantity (Max of 30)" min="1" max="30" oninput="calculateAmount(this.value)" onmouseleave="total()" required/>
 
-			<p> Total Amount: </p>
+			<p id="extra"> Total Amount: </p>
 			<input type="text" class name="pricea" id="pricea" readonly>
 
 			 <script>
@@ -322,8 +330,8 @@
 
         	</script>
 
-			<p id="cottaged" style="font-weight:bold;">Cottage</p>
-				<select id="cottage" name="cottage" onchange="calculateValue(this.value)" required>
+			<p id="cottaged" class="una">Cottage</p>
+				<select id="cottage" name="cottage" class="unah" onchange="calculateValue(this.value)" required>
 				<option disabled selected hidden>Choose your option</option>
 				<optgroup name="1" id="1" label="Tubigan">
 					<option id="cottage1" value="750">Small Kubo (6 pax)</option>
@@ -381,41 +389,18 @@
 				</optgroup>
 				</select>
 
-			<input type="number" id="quant" name="quant" placeholder="Quantity (Max of 2)" min="1" max="2" oninput="calculateValue(this.value)" onmouseleave="total()" required/><br/>
+			<input type="number" id="quant" name="quant" class="unapa" placeholder="Quantity (Max of 2)" min="1" max="2" oninput="calculateValue(this.value)" onmouseleave="total()" required/><br/>
 
 
-			<p> Total Amount: </p>
+			<p id="extra"> Total Amount: </p>
 			<input type="text" class name="priceb" id="priceb" readonly>
 
-			<p> Grand Total Amount: </p>
-			<input type="text" class name="tot_amount" id="tot_amount" readonly>
+			<input type="text" class name="tot_amount" id="tot_amount"  hidden readonly>
 
 			<script>
 
 			function newdivisionSelectHandler(select){
 
-            	/*if (select.value == 'none'){
-            			var ele = document.getElementById('A')
-			            ele.style.display = 'none'
-		            	var ele = document.getElementById('B')
-			            ele.style.display = 'none'
-			            var ele = document.getElementById('C')
-			            ele.style.display = 'none'
-			            var ele = document.getElementById('D')
-			            ele.style.display = 'none'
-			            var ele = document.getElementById('E')
-			            ele.style.display = 'none'
-			            var ele = document.getElementById('F')
-			            ele.style.display = 'none'
-			            var ele = document.getElementById('G')
-			            ele.style.display = 'none'
-			            var ele = document.getElementById('H')
-			            ele.style.display = 'none'
-			            var ele = document.getElementById('I')
-			            ele.style.display = 'none'
-			            
-			    }
-*/
 			    if (select.value == 'Tubigan Garden Resort'){
 			    		var ele = document.getElementById('1')
 			            ele.style.display = 'block'
@@ -635,40 +620,15 @@
 
         	</script>
 
+		</div>
+		
+		<div class="cardc">
 
-
-			<p id="reserved" style="font-weight:bold;">Date of Reservation</p>
-				<input type="date" id="reserve" name="reserve" required/>
-			
-			<p> Do you want to pay using Credit Card?</p>
-				<input type="radio" id="yes" name="response">
-				<label for="yes">Yes</label>
-				<input type="radio" id="no" name="response">
-				<label for="no">No</label><br><br>
-
-			<div id="dvtext">
-				<p id="cname" style="font-weight:bold;">Name in the Card:</p>
-    			<input type="text" id="cardname" name="cardname">
-    			<p id="cnum" style="font-weight:bold;">Card Number:</p>
-    			<input type="tel" id="cardnum" name="cardnum" placeholder="1234-5678-1234-5678" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}">
-    			<p id="cmonth" style="font-weight:bold;">Expiration Month:</p>
-    			<input type="text" id="expmonth" name="expmonth">
-    			<p id="cyear" style="font-weight:bold;">Expiration Year:</p>
-    			<input type="tel" id="expyear" name="expyear" pattern="[0-9]{4}">
-    			<p id="ccode" style="font-weight:bold;">CVC Code:</p>
-    			<input type="tel" id="code" name="code" pattern="[0-9]{3}">
-			</div><br>
-
-			<style type="text/css">
-				#dvtext {
-  					display: none;
-						}
-				#yes:checked ~ #dvtext {
-  					display: block;
-						}
-			</style>
-
-
-			<input type="submit" id="inConfirm" name="inConfirm" value="Confirm"/>
+			<input type="submit" id="inConfirm" name="inConfirm" class='unae' value="Confirm"/>
 		{% csrf_token %}
+
+		</div>
 		</form>
+
+	</body>
+</html>
