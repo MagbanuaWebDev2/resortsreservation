@@ -1,5 +1,5 @@
 from django.shortcuts import redirect,render
-from .models import Admission, Resort, Customer, Cottage, Reservation, Card
+from .models import Resort, Customer, Reservation, Card, Parking
 
 def homepage(request):
 
@@ -20,57 +20,75 @@ def AnotherPage(request):
 		email = request.POST['email']
 		)
 
-	
-	# crdtcard=Card.objects.create(
-	# 	cardname = request.POST['cardname'],
-	# 	cardnum = request.POST['expdate'],
-	# 	code = request.POST['code'])
 
-
-	d=Customer.objects.last
+	guest=Customer.objects.last
 
 	return render(request,'nextpage.html', {
-		'd':d}
+		'guest': guest}
 	)
 
 def NextPage(request):
 
 	resortId=Resort.objects.create(
-		resort = request.POST['resort'])
-
-	admit=Admission.objects.create(
+		resort = request.POST['resort'],
 		entrance = request.POST['entrance'],
 		admit = request.POST['admit'],
-		pricea = request.POST['pricea']
-		)
-
-	cottage=Cottage.objects.create(
+		pricea = request.POST['pricea'],
 		cottage = request.POST['cottage'],
 		quant = request.POST['quant'],
-		priceb = request.POST['priceb'])
+		priceb = request.POST['priceb'],
+		tot_amount=request.POST['tot_amount'])
 
+	park=Parking.objects.create(
+		vehicle = request.POST['vehicle'],
+		licenseplate = request.POST['licenseplate'],
+		prkamnt = request.POST['prkamnt'])
 
-	return render(request,'thirdpage.html')
+	guest=Customer.objects.last
+	enter=Resort.objects.last
+
+	return render(request,'thirdpage.html', {
+		'guest':guest,
+		'enter':enter})
 
 def LastPage(request):
 
 	reserve=Reservation.objects.create(
-		reserve=request.POST['reserve'],)
-		# tot_amount=request.POST['tot_amount']
+		reserve=request.POST['reserve'])
+
+	crdtcard=Card.objects.create(
+		cardname = request.POST['cardname'],
+		cardnum = request.POST['cardnum'],
+		expmonth= request.POST['expmonth'],
+		expyear= request.POST['expyear'],
+		code = request.POST['code'])
 
 
-	d=Customer.objects.last
-	c=Resort.objects.last
-	b=Admission.objects.last
-	a=Cottage.objects.last
+	guest=Customer.objects.last
+	enter=Resort.objects.last
+	plan=Reservation.objects.last
+	car=Parking.objects.last
 
 	return render(request,'receipt.html', {
-		'a':a,
-		'b':b,
-		'c':c,
-		'd':d}
+		'guest':guest,
+		'enter':enter,
+		'plan':plan,
+		'car':car}
 	)
 
-
 def Extra(request):
-	return render(request,'card.html')
+
+	guest=Customer.objects.last
+	enter=Resort.objects.last
+	card=Card.objects.last
+
+	return render(request,'card.html', {
+		'guest':guest,
+		'enter':enter,
+		'card':card}
+	)
+
+def destroy(request,id):
+	crdtcard = Card.objects.get(id=id)
+	crdtcard.delete()
+	return redirect("/carddetails")

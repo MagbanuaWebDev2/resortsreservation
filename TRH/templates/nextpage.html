@@ -13,7 +13,7 @@
 		<div class="topnav" >
 				<img src="{% static 'IMAGE/logo.png' %}">
 			</div>
-			<p class="unaa"> Hello, Name Here!</p>
+			<p class="unaa"> Hello, {{guest.firstname}}&nbsp;{{guest.lastname}}!</p>
 
 		<form method="POST" action="date">
 				<div class='card'>
@@ -395,7 +395,8 @@
 			<p id="extra"> Total Amount: </p>
 			<input type="text" class name="priceb" id="priceb" readonly>
 
-			<input type="text" class name="tot_amount" id="tot_amount"  hidden readonly>
+			<p id="extra"> Grand Total Amount: </p>
+			<input type="text" class name="tot_amount" id="tot_amount" readonly>
 
 			<script>
 
@@ -617,10 +618,51 @@
 
              }
 
-
         	</script>
 
 		</div>
+
+		<div class="cardb">
+
+			<p class="una"> Would you like to reserve a parking slot?</p>
+				<input type="radio" id="yes" class="radio" name="response">
+				<label for="yes" class="una">Yes</label>
+				<input type="radio" id="no" class="radio" name="response">
+				<label for="no" class="una">No</label><br><br>
+
+			<div class="dvtext">
+				<p id="vtype" class="una">Type of Vehicle</p>
+    			<select id="vehicle" name="vehicle" class="unaf" onchange="calculateTotal(this.value)">
+					<option id="none" name="none" value="none" disabled selected hidden>Choose your option</option>
+					<option id="Motorcyle" value="10">Motorcycle</option>
+					<option id="Tricycle" value="20">Tricycle</option>
+					<option id="Jeepney" value="100">Jeepney</option>
+					<option id="Van" value="200">Van</option>
+					<option id="Pickup" value="250">Pickup Truck</option>
+					<option id="Sedan" value="150">Sedan</option>
+				</select>
+
+				<p id="pltno" class="una">License Plate Number</p>
+    				<input type="text" id="licenseplate" class="details" name="licenseplate" pattern="[A-Z]{3}-[1-9]{4}" placeholder="AAA-1234">
+
+    			<p id="extra"> Total Amount: </p>
+					<input type="text" class name="prkamnt" id="prkamnt" readonly>
+
+
+			</div><br>
+
+			<script>
+				function calculateTotal() {
+            	var pricee = document.getElementById('vehicle')
+                var prkamnt = pricee.value*1;
+                /*display the result*/
+                var divobjd = document.getElementById('prkamnt');
+                divobjd.value = prkamnt;
+                return prkamnt;
+            }
+			</script>
+
+			</div>
 		
 		<div class="cardc">
 

@@ -24,14 +24,14 @@
 }
 
 .card {
-  position: relative;
+  position: fixed;
   display: inline-block;
   background-color: #1a2f31;
   width: 535px;
-  height: 400px;
-  margin-top: 40px;
-  margin-left: 400px;
-  padding-top: 30px;
+  height: 420px;
+  margin-top: 20px;
+  margin-left: 150px;
+  padding-top: 20px;
   border-radius: 20px;
   text-align: center;
   box-shadow: 1px 2px 5px #1a2f317a;
@@ -64,10 +64,10 @@
 
 .unaa{
   font-family: 'Poppins', sans-serif;
+  text-align: center;
   font-weight: 600;
   font-size: 25px;
   padding-top: 80px;
-  padding-left: 565px;
   color: #FFCC57;
   text-shadow: 1px 1px 4px black;
 
@@ -146,6 +146,21 @@
 	text-align: center;
 }
 
+#prkamnt {
+  background-color:rgba(0, 0, 0, 0);
+  color: #FFCC57;
+  border: none;
+  outline:none;
+  height:15px;
+  transition:height 1s;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  width: 40px;
+  text-align: center;
+}
+
+
+
 
 .unah {
   width: 250px;
@@ -161,7 +176,7 @@
 
 
 .unae{
-  margin-top:20px;
+  margin-top:70px;
   width: 100px;
   height: 30px;
   font-family: 'Rubik', sans-serif;
@@ -171,12 +186,12 @@
   font-weight: 500;
   color: #000;
   background-color: #fff;
-  border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
+  border: none;
   }
 
 .unae:hover {
@@ -186,12 +201,59 @@
   transform: translateY(-2px);
 }
 
+.cardb {
+  position: relative;
+  display: inline-block;
+  background-color: #1a2f31;
+  width: 500px;
+  height: 320px;
+  margin-top: 80px;
+  margin-left: 700px;
+  padding-top: 10px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 1px 2px 5px #1a2f317a;
+  transition: all 0.3s ease-in-out;
+}
+
+.dvtext {
+  display: none;
+}
+       
+#yes:checked ~ .dvtext {
+  display: block;
+}
+
+
+#yes:checked ~ .cardb {
+  position: relative;
+  height: 1000px;
+}
+
+
+
+.details {
+  margin-top:1px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-align: center;
+  padding-left: 7px;
+  width: 300px;
+  height: 25px;
+  border-style: none;
+  outline: none;
+  border-radius: 20px;
+ }
+
+
 .cardc {
   position: relative;
   display: inline-block;
   width: 370px;
   height: 435px;
-  margin-left: 490px;
+  margin-left: 495px;
   border-radius: 20px;
   text-align: center;
 }
+

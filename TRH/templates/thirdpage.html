@@ -13,7 +13,7 @@
 		<div class="topnav" >
 				<img src="{% static 'IMAGE/logo.png' %}">
 			</div>
-			<p class="unaa"> Hello, Full Name!</p>
+			<p class="unaa"> Hello, {{guest.firstname}}&nbsp;{{guest.lastname}}!&nbsp;&nbsp;&nbsp;&nbsp; Chosen Resort: {{enter.resort}}</p>
 
 		<form method="POST" action="success">
 				<div class='card'>

@@ -19,21 +19,23 @@
 		</div>
 
 		<div class="card">
-				<p>Name: </p>
-				<p>Contact No.:</p>
-				<p>Email Address:</p>
-				<p>Chosen Resort:</p>
-				<p>Admission:</p>
-				<p>Quantity:</p>
-				<p>Cottage:</p>
-				<p>Quantity:</p>
-				<p> Grand Total Amount:<p></br>
-				<p>Date of Reservation:</p>
-				<a href="carddetails">Card Details (if entered)</a> 
+				<h2>Name:</h2><p>{{guest.firstname}}&nbsp;{{guest.lastname}}</p>
+				<h2>Contact No.:</h2><p> {{guest.contact}}</p>
+				<h2>Email Address:</h2><p> {{guest.email}}</p>
+				<h2>Chosen Resort:</h2><p> {{enter.resort}}</p>
+				<h2>Admission:</h2><p>&#8369;{{ enter.entrance }}.00&nbsp;x{{enter.admit}}&nbsp;=&nbsp;&#8369;{{enter.pricea}}.00</p>
+				<h2>Cottage:</h2><p> {{enter.get_cottage_display}}&nbsp;{{enter.cottage}}.00&nbsp;x{{enter.quant}}&nbsp;=&nbsp;&#8369;{{enter.priceb}}.00</p>
+				<h2> Grand Total Amount:</h2><p>&#8369;{{enter.tot_amount}}.00<p>
+				<h2>Date of Reservation:</h2><p> {{plan.reserve}}</p></br>
+		</div>
+		<div class="cardb">
+
+				<h2>Parking Details</h2>
+				<h2>Vehicle Type:</h2><p> {{car.get_vehicle_display}}</p>
+				<h2>Plate Number:</h2><p> {{car.licenseplate}}</p>
+				<h2>Total Amount (Parking):</h2><p> &#8369; {{car.prkamnt}}.00</p></br></br>
+				<a href="carddetails">Card Details (if entered)</a>
 		</div>
 
-		<div class="carda">
-			<p>Additional Request</p>
-			<textarea id="request" name="request" placeholder="Comment your requests here" cols="72" rows="4"></textarea>
 	</body>
 </html>
