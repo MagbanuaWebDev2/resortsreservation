@@ -22,10 +22,16 @@
 				<h2>Name of the Reservee:</h2> <p> {{guest.firstname}}&nbsp;{{guest.lastname}}</p>
 				<h2>Chosen Resort:</h2> <p> {{enter.resort}}</p>
 				<h2>Grand Total Amount of Reservation:<h2><p>&#8369;{{enter.tot_amount}}.00</p></br></br>
-				<p>Card Name: {{card.cardname}}</p></br>
-				<p>Card No.: {{card.cardnum}}</p></br>
-				<p>Expiration Date: {{card.expmonth}}&nbsp;{{card.expyear}}</p></br>
-				<p>CVC Code:{{card.code}}</p></br>
+
+			<tr>
+				<td>Card Name: {{card.cardname}}</td>
+				<td>Card No.: {{card.cardnum}}</td>
+				<td>Expiration Date: {{card.expmonth}}&nbsp;{{crdtcard.expyear}}</td>
+				<td>CVC Code:{{card.code}}</td>
+
+			</tr>
+
+			<a href="/delete/{{ card.id }}" type="submit" class="unaf"><p>Delete</p></a>
 		</div>
 
 		<div class="cardc">

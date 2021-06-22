@@ -7,7 +7,9 @@ urlpatterns = [
 	path('new', views.AnotherPage, name="new"),
 	path('date', views.NextPage, name="date"),
 	path('success', views.LastPage, name="success"),
-	path('carddetails', views.Extra, name="carddetails")
+	path('carddetails', views.Extra, name="carddetails"),
+	path('delete/<int:id>', views.destroy),
+
 ]
 
 

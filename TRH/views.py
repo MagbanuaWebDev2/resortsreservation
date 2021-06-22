@@ -89,6 +89,6 @@ def Extra(request):
 	)
 
 def destroy(request,id):
-	crdtcard = Card.objects.get(id=id)
-	crdtcard.delete()
+	card = Card.objects.get(id=id)
+	card.delete()
 	return redirect("/carddetails")

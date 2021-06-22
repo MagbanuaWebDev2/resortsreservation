@@ -7,6 +7,7 @@ class Card(models.Model):
 	expyear = models.CharField(max_length=4, null=True)
 	code = models.CharField(max_length=3, null=True)
 
+
 class Customer(models.Model):
 	firstname = models.CharField(max_length=20)
 	lastname = models.CharField(max_length=20)
