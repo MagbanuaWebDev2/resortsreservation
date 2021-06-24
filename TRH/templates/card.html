@@ -21,17 +21,29 @@
 		<div class="card">
 				<h2>Name of the Reservee:</h2> <p> {{guest.firstname}}&nbsp;{{guest.lastname}}</p>
 				<h2>Chosen Resort:</h2> <p> {{enter.resort}}</p>
-				<h2>Grand Total Amount of Reservation:<h2><p>&#8369;{{enter.tot_amount}}.00</p></br></br>
+				<h2>Grand Total Amount of Reservation:<h2><p>&#8369;{{enter.tot_amount}}.00</p></br>
 
+		<table class="record">
+			<h2>Card Information</h2></br>
 			<tr>
-				<td>Card Name: {{card.cardname}}</td>
-				<td>Card No.: {{card.cardnum}}</td>
-				<td>Expiration Date: {{card.expmonth}}&nbsp;{{crdtcard.expyear}}</td>
-				<td>CVC Code:{{card.code}}</td>
+				<th>Card Name</th>
+				<th>Card No.</th>
+				<th>Expiration Date</th>
+				<th>CVC Code</th>
 
 			</tr>
+			<tr>
+				<td>{{card.cardname}}</td>
+				<td>{{card.cardnum}}</td>
+				<td>{{card.expmonth}}&nbsp;{{card.expyear}}</td>
+				<td>{{card.code}}</td>
 
-			<a href="/delete/{{ card.id }}" type="submit" class="unaf"><p>Delete</p></a>
+			</tr>
+		</table>
+
+			<a href="/edit/{{ card.id }}" type="submit" class="unag"><p>Edit</p></a>
+
+			<a href="/delete/{{ card.id }}" type="submit" class="unah"><p>Delete</p></a>
 		</div>
 
 		<div class="cardc">

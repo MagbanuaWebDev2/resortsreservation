@@ -624,22 +624,18 @@
 
 		<div class="cardb">
 
-			<p class="una"> Would you like to reserve a parking slot?</p>
-				<input type="radio" id="yes" class="radio" name="response">
-				<label for="yes" class="una">Yes</label>
-				<input type="radio" id="no" class="radio" name="response">
-				<label for="no" class="una">No</label><br><br>
+			<p class="una"> Choose a Parking Slot Option</p>
 
-			<div class="dvtext">
 				<p id="vtype" class="una">Type of Vehicle</p>
     			<select id="vehicle" name="vehicle" class="unaf" onchange="calculateTotal(this.value)">
-					<option id="none" name="none" value="none" disabled selected hidden>Choose your option</option>
-					<option id="Motorcyle" value="10">Motorcycle</option>
-					<option id="Tricycle" value="20">Tricycle</option>
-					<option id="Jeepney" value="100">Jeepney</option>
-					<option id="Van" value="200">Van</option>
-					<option id="Pickup" value="250">Pickup Truck</option>
-					<option id="Sedan" value="150">Sedan</option>
+					<option id="choose" name="choose" value="choose" disabled selected hidden>Choose your option</option>
+					<option id="None" name="None" value="0">None</option>
+					<option id="Motorcyle" name="Motorcyle" value="10">Motorcycle</option>
+					<option id="Tricycle" name="Tricycle" value="20">Tricycle</option>
+					<option id="Jeepney" name="Jeepney" value="100">Jeepney</option>
+					<option id="Van" name="Van" value="200">Van</option>
+					<option id="Pickup" name="Pickup" value="250">Pickup Truck</option>
+					<option id="Sedan" name="Sedan" value="150">Sedan</option>
 				</select>
 
 				<p id="pltno" class="una">License Plate Number</p>
@@ -647,9 +643,6 @@
 
     			<p id="extra"> Total Amount: </p>
 					<input type="text" class name="prkamnt" id="prkamnt" readonly>
-
-
-			</div><br>
 
 			<script>
 				function calculateTotal() {

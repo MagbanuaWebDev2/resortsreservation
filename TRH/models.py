@@ -21,6 +21,7 @@ class Customer(models.Model):
 class Parking(models.Model):
 	customer = models.ForeignKey(Customer, null=True, on_delete=models.CASCADE)
 	vehicletype = (
+		('0', 'None'),
 		('10', 'Motorcycle'),
 		('20', 'Tricycle'),
 		('100', 'Jeepney'),
@@ -80,9 +81,6 @@ class Resort(models.Model):
 	entrance = models.CharField(max_length=30, choices=entrchoice)
 	admit = models.IntegerField(default='1')
 	pricea = models.IntegerField(default='100')
-
-	def get_entrance_display(self):
-		return
 
 	cotchoice=(
 		('750','Small Kubo (6 pax)'),

@@ -1,4 +1,5 @@
 from django.shortcuts import redirect,render
+from .forms import CardForm
 from .models import Resort, Customer, Reservation, Card, Parking
 
 def homepage(request):
@@ -87,6 +88,19 @@ def Extra(request):
 		'enter':enter,
 		'card':card}
 	)
+
+def edit(request,id):
+	card = Card.objects.get(id=id)
+	return render(request,'edit.html',{'card':card})
+
+def update(request,id):
+	card = Card.objects.get(id=id)
+	form = CardForm(request.POST, instance = card)
+	if form.is_valid():
+		form.save()
+		return redirect("/carddetails")
+
+	return render(request,'edit.html',{'card':card})
 
 def destroy(request,id):
 	card = Card.objects.get(id=id)
