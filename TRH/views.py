@@ -94,13 +94,14 @@ def edit(request,id):
 	return render(request,'edit.html',{'card':card})
 
 def update(request,id):
-	card = Card.objects.get(id=id)
-	form = CardForm(request.POST, instance = card)
-	if form.is_valid():
-		form.save()
-		return redirect("/carddetails")
-
-	return render(request,'edit.html',{'card':card})
+    card = Card.objects.get(id=id)
+    card.cardname = request.POST['cardname']
+    card.cardnum = request.POST['cardnum']
+    card.expmonth = request.POST['expmonth']
+    card.expyear = request.POST['expyear']
+    card.code = request.POST['code']
+    card.save()
+    return redirect("/carddetails")
 
 def destroy(request,id):
 	card = Card.objects.get(id=id)
